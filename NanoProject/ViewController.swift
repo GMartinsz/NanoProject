@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ALamo
+
 
 class ViewController: UIViewController {
 
