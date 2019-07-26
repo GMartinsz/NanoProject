@@ -6,6 +6,7 @@
 //  Copyright © 2019 Guilherme Martins Dalosto de Oliveira. All rights reserved.
 //
 
+
 import UIKit
 import Alamofire
 import SwiftyJSON
