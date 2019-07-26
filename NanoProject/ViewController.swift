@@ -15,19 +15,26 @@ import SwiftyJSON
 
 class ViewController: UIViewController {
 
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        getChuckQuote()
-        getDadJoke()
+        
         // Do any additional setup after loading the view.
     }
     
     
     @IBAction func generateButton(_ sender: UIButton) {
+//        getText(from: "https://icanhazdadjoke.com/", key: "joke")
+//        getText(from: "https://api.chucknorris.io/jokes/random", key: "value")
+        getText(from: "https://icanhazdadjoke.com/", key: "joke") { (textValue) in
+            self.textViewOutlet.text = textValue
+        }
+
+        
     }
     
     @IBOutlet weak var textViewOutlet: UITextView!
+    
     
     
 

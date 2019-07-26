@@ -12,21 +12,13 @@ import SwiftyJSON
 
 extension ViewController {
     
-    func getChuckQuote() {
-        Alamofire.request("https://api.chucknorris.io/jokes/random").responseData { (responseData) in
+    func getText(from url: String, key: String, completion: @escaping (String) -> ()) {
+        Alamofire.request(url, method: .get, parameters: [:], encoding: JSONEncoding.default, headers: ["Accept": "application/json"]).responseData { (responseData) in
             let json = JSON(responseData.result.value!)
             let dict = json.dictionaryObject
-            let value = dict!["value"] as! String
-            print(value)
+            let value = dict![key] as! String
+            completion(value)
         }
     }
     
-    func getDadJoke() {
-        Alamofire.request("https://icanhazdadjoke.com/", method: .get, parameters: [:], encoding: JSONEncoding.default, headers: ["Accept": "application/json"]).responseData { (responseData) in
-            let json = JSON(responseData.result.value!)
-            let dict = json.dictionaryObject
-            let value = dict!["joke"] as! String
-            print(value)
-        }
-    }
 }
