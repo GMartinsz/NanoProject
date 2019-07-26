@@ -14,6 +14,7 @@
 		ACE2F08B22EA3C0300C5A002 /* NanoProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ACE2F08922EA3C0300C5A002 /* NanoProject.xcdatamodeld */; };
 		ACE2F08D22EA3C0400C5A002 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACE2F08C22EA3C0400C5A002 /* Assets.xcassets */; };
 		ACE2F09022EA3C0400C5A002 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE2F08E22EA3C0400C5A002 /* LaunchScreen.storyboard */; };
+		E6E2FF3A22EB8E2200DD9D7B /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E2FF3922EB8E2200DD9D7B /* News.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		ACE2F08F22EA3C0400C5A002 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACE2F09122EA3C0400C5A002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C81EE0EFAA9075802EFD2810 /* Pods-NanoProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NanoProject.release.xcconfig"; path = "Target Support Files/Pods-NanoProject/Pods-NanoProject.release.xcconfig"; sourceTree = "<group>"; };
+		E6E2FF3922EB8E2200DD9D7B /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				ACE2F08E22EA3C0400C5A002 /* LaunchScreen.storyboard */,
 				ACE2F09122EA3C0400C5A002 /* Info.plist */,
 				ACE2F08922EA3C0300C5A002 /* NanoProject.xcdatamodeld */,
+				E6E2FF3922EB8E2200DD9D7B /* News.swift */,
 			);
 			path = NanoProject;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 			files = (
 				ACE2F08522EA3C0300C5A002 /* ViewController.swift in Sources */,
 				ACE2F08322EA3C0300C5A002 /* AppDelegate.swift in Sources */,
+				E6E2FF3A22EB8E2200DD9D7B /* News.swift in Sources */,
 				ACE2F08B22EA3C0300C5A002 /* NanoProject.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
