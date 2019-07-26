@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A11154529E46D577250AB319 /* Pods_NanoProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459A853375E5CF8D6E4406F1 /* Pods_NanoProject.framework */; };
+		A440F77F22EB8D55004EB953 /* apisMarcelo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A440F77E22EB8D55004EB953 /* apisMarcelo.swift */; };
 		ACE2F08322EA3C0300C5A002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE2F08222EA3C0300C5A002 /* AppDelegate.swift */; };
 		ACE2F08522EA3C0300C5A002 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE2F08422EA3C0300C5A002 /* ViewController.swift */; };
 		ACE2F08822EA3C0300C5A002 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE2F08622EA3C0300C5A002 /* Main.storyboard */; };
@@ -19,7 +20,7 @@
 /* Begin PBXFileReference section */
 		072E30A18069334E668D9344 /* Pods-NanoProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NanoProject.debug.xcconfig"; path = "Target Support Files/Pods-NanoProject/Pods-NanoProject.debug.xcconfig"; sourceTree = "<group>"; };
 		459A853375E5CF8D6E4406F1 /* Pods_NanoProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NanoProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A440F77C22EB8C03004EB953 /* apisMarcelo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = apisMarcelo.swift; sourceTree = "<group>"; };
+		A440F77E22EB8D55004EB953 /* apisMarcelo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = apisMarcelo.swift; sourceTree = "<group>"; };
 		ACE2F07F22EA3C0300C5A002 /* NanoProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NanoProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE2F08222EA3C0300C5A002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACE2F08422EA3C0300C5A002 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +82,7 @@
 		ACE2F08122EA3C0300C5A002 /* NanoProject */ = {
 			isa = PBXGroup;
 			children = (
+				A440F77E22EB8D55004EB953 /* apisMarcelo.swift */,
 				ACE2F08222EA3C0300C5A002 /* AppDelegate.swift */,
 				ACE2F08422EA3C0300C5A002 /* ViewController.swift */,
 				ACE2F08622EA3C0300C5A002 /* Main.storyboard */,
@@ -207,7 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A440F77D22EB8C03004EB953 /* apisMarcelo.swift in Sources */,
+				A440F77F22EB8D55004EB953 /* apisMarcelo.swift in Sources */,
 				ACE2F08522EA3C0300C5A002 /* ViewController.swift in Sources */,
 				ACE2F08322EA3C0300C5A002 /* AppDelegate.swift in Sources */,
 				ACE2F08B22EA3C0300C5A002 /* NanoProject.xcdatamodeld in Sources */,
