@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,7 +14,6 @@
 		ACE2F08B22EA3C0300C5A002 /* NanoProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ACE2F08922EA3C0300C5A002 /* NanoProject.xcdatamodeld */; };
 		ACE2F08D22EA3C0400C5A002 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACE2F08C22EA3C0400C5A002 /* Assets.xcassets */; };
 		ACE2F09022EA3C0400C5A002 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE2F08E22EA3C0400C5A002 /* LaunchScreen.storyboard */; };
-		ACE2F09822EB84B400C5A002 /* RandomFacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE2F09722EB84B400C5A002 /* RandomFacts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +27,6 @@
 		ACE2F08C22EA3C0400C5A002 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACE2F08F22EA3C0400C5A002 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACE2F09122EA3C0400C5A002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ACE2F09722EB84B400C5A002 /* RandomFacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomFacts.swift; sourceTree = "<group>"; };
 		C81EE0EFAA9075802EFD2810 /* Pods-NanoProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NanoProject.release.xcconfig"; path = "Target Support Files/Pods-NanoProject/Pods-NanoProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,7 +56,6 @@
 				072E30A18069334E668D9344 /* Pods-NanoProject.debug.xcconfig */,
 				C81EE0EFAA9075802EFD2810 /* Pods-NanoProject.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -90,7 +87,6 @@
 				ACE2F08E22EA3C0400C5A002 /* LaunchScreen.storyboard */,
 				ACE2F09122EA3C0400C5A002 /* Info.plist */,
 				ACE2F08922EA3C0300C5A002 /* NanoProject.xcdatamodeld */,
-				ACE2F09722EB84B400C5A002 /* RandomFacts.swift */,
 			);
 			path = NanoProject;
 			sourceTree = "<group>";
@@ -212,7 +208,6 @@
 			files = (
 				ACE2F08522EA3C0300C5A002 /* ViewController.swift in Sources */,
 				ACE2F08322EA3C0300C5A002 /* AppDelegate.swift in Sources */,
-				ACE2F09822EB84B400C5A002 /* RandomFacts.swift in Sources */,
 				ACE2F08B22EA3C0300C5A002 /* NanoProject.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
