@@ -11,9 +11,13 @@ import SwiftyJSON
 
 class Quote{
     
+    func getData(_ completion: (String) -> Void){
+    let urlRequest = "http://quotes.rest/qod.json?category=inspire"
+    
+    Alamofire.request
     
     
-    
+    }
     
     
     
