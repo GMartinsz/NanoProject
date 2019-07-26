@@ -7,10 +7,14 @@
 //
 
 import UIKit
-import ALamo
+import Alamofire
+import SwiftJson
+
+
 
 
 class ViewController: UIViewController {
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
