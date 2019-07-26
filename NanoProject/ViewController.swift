@@ -15,6 +15,8 @@ import SwiftyJSON
 
 class ViewController: UIViewController {
 
+    var urls = ["https://icanhazdadjoke.com/", "https://api.chucknorris.io/jokes/random"]
+    var keys = ["joke", "value"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +26,8 @@ class ViewController: UIViewController {
     
     
     @IBAction func generateButton(_ sender: UIButton) {
-//        getText(from: "https://icanhazdadjoke.com/", key: "joke")
-//        getText(from: "https://api.chucknorris.io/jokes/random", key: "value")
-        getText(from: "https://icanhazdadjoke.com/", key: "joke") { (textValue) in
+        let index = Int.random(in: 0...urls.count - 1)
+        getText(from: urls[index], key: keys[index]) { (textValue) in
             self.textViewOutlet.text = textValue
         }
 
