@@ -21,6 +21,14 @@ class ViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
+    
+    
+    @IBAction func generateButton(_ sender: UIButton) {
+    }
+    
+    @IBOutlet weak var textViewOutlet: UITextView!
+    
+    
 
 
 }
