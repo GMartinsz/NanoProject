@@ -9,14 +9,26 @@
 import Alamofire
 import SwiftyJSON
 
+enum typeTextObject {
+    case simple
+    case quotes
+}
+
 class Functions {
     
     // Get API key
-    func getText(from url: String, key: String, completion: @escaping (String) -> ()) {
+    func getText(type: typeTextObject, from url: String, key: String, completion: @escaping (String) -> ()) {
         Alamofire.request(url, method: .get, parameters: [:], encoding: JSONEncoding.default, headers: ["Accept": "application/json"]).responseData { (responseData) in
+            var value = ""
             let json = JSON(responseData.result.value!)
             let dict = json.dictionaryObject
-            let value = dict![key] as! String
+            switch type {
+            case .quotes:
+                let quoteDict = dict!["quote"] as! [String: AnyObject]
+                value = quoteDict["body"] as! String
+            default:
+                value = dict![key] as! String
+            }
             completion(value)
         }
     }

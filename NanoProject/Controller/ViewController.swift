@@ -13,39 +13,17 @@ import SwiftyJSON
 
 
 class ViewController: UIViewController {
-    
-<<<<<<< HEAD
-    @IBOutlet var popoverFactsCN: FactsCN!
-    @IBOutlet var popoverNews: News!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.addSubview(popoverFactsCN)
-=======
-    let functions = Functions()
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
->>>>>>> a1bacb9ce175a320969a95a63902baf2e093dcec
-       
-        // Do any additional setup after loading the view.
     }
     
-    
     @IBAction func generateButton(_ sender: UIButton) {
-<<<<<<< HEAD
-=======
-    
 
->>>>>>> a1bacb9ce175a320969a95a63902baf2e093dcec
-        
     }
     
     @IBOutlet weak var textViewOutlet: UITextView!
-    
-    
-    
-
 
 }
 

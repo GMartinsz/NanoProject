@@ -9,6 +9,7 @@
 class Quote  {
     
     let url = "https://favqs.com/api/qotd"
-    
+    let key = "quote"
+
     
 }
