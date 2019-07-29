@@ -49,9 +49,8 @@ class Functions {
             
             let index = self.generateIndex(limite: artigos.count)
             let artigo = artigos[index]
-            let urlImagem = URL(string: artigo["urlToImage"] as! String)
-            
-            self.baixarImagem(url: urlImagem!, completion: { (image) in
+            guard let urlImagem = URL(string: artigo["urlToImage"] as! String) else {return}
+            self.baixarImagem(url: urlImagem, completion: { (image) in
                 completion(image, artigo)
             })
             
