@@ -10,6 +10,11 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+enum typeTextObject {
+    case simple
+    case complex
+}
+
 class ExecuteViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -18,11 +23,17 @@ class ExecuteViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    func getText(from url: String, key: String, completion: @escaping (String) -> ()) {
+    func getText(type: typeTextObject, from url: String, key: String, completion: @escaping (String) -> ()) {
         Alamofire.request(url, method: .get, parameters: [:], encoding: JSONEncoding.default, headers: ["Accept": "application/json"]).responseData { (responseData) in
+            let value: String
             let json = JSON(responseData.result.value!)
             let dict = json.dictionaryObject
-            let value = dict![key] as! String
+            if type == .simple {
+                value = dict![key] as! String
+            } else {
+                let dictObj = dict![key] as! [String: AnyObject]
+                value = dictObj["body"] as! String
+            }
             completion(value)
         }
     }
