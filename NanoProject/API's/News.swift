@@ -9,9 +9,10 @@
 
 import Alamofire
 import SwiftyJSON
+import UIKit
 
 
-class News {
+class News : UIView {
     
     //Variaveis de busca
     var country = String()
