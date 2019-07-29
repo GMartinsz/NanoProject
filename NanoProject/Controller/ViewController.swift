@@ -14,16 +14,18 @@ import SwiftyJSON
 
 
 class ViewController: UIViewController {
+    
+    
+    var news = News()
 
-<<<<<<< HEAD
     var urls = ["https://icanhazdadjoke.com/", "https://api.chucknorris.io/jokes/random"]
     var keys = ["joke", "value"]
-    
-=======
     let quote = Quote()
->>>>>>> randomquote
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        news.searchTopHeadlines()
         quote.getData { (value) in
             print(value)
         }
