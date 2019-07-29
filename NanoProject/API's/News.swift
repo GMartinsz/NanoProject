@@ -38,7 +38,7 @@ class News {
             guard let dicionario = json.dictionaryObject else {return}
             guard let artigos = dicionario["articles"] as? [[String: AnyObject]] else {return}
             
-            let index = self.generateIndex(qtdNoticias: dicionario["totalResults"] as! Int)
+            let index = self.generateIndex(limite: dicionario["totalResults"] as! Int)
             let artigo = artigos[index]
             
             self.urlImagem = URL(string: artigo["urlToImage"] as! String)
@@ -47,9 +47,9 @@ class News {
         }
     }
     
-    func generateIndex(qtdNoticias: Int) -> Int{
+    func generateIndex(limite: Int) -> Int{
         var index = Int()
-        index = Int.random(in: 0...qtdNoticias - 1)
+        index = Int.random(in: 0...limite - 1)
         return index
     }
 }
