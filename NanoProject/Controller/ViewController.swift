@@ -15,11 +15,10 @@ import SwiftyJSON
 class ViewController: UIViewController {
 
     @IBOutlet var popoverImagem: popoverImage!
-
     let functions = Functions()
-    
-    
-    
+    let jokes = Jokes()
+    @IBOutlet var labelOutlet: popoverLabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -28,6 +27,11 @@ class ViewController: UIViewController {
         
 //        let numAleatorio = randomContent(limite: 3)
         conteudoNews()
+//        functions.getText(type: .simple, from: jokes.url, key: jokes.key) { (value) in
+//            self.labelOutlet.textLabel.text = value
+//            self.view.addSubview(self.labelOutlet)
+//            self.labelOutlet.center = self.view.center
+//        }
         
        
         
@@ -45,6 +49,7 @@ class ViewController: UIViewController {
             self.view.addSubview(self.popoverImagem)
             self.popoverImagem.center = self.view.center
             self.popoverImagem.tituloNoticia.text = (title as! String)
+
         }
         
     }
