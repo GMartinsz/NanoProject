@@ -12,6 +12,6 @@ import UIKit
 class Quote : UIView {
     
     let url = "https://favqs.com/api/qotd"
-    let key ""
+    
     
 }
