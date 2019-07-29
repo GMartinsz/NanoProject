@@ -15,7 +15,9 @@ import SwiftyJSON
 class ViewController: UIViewController {
     
     let functions = Functions()
+    let jokes = Jokes()
 
+    @IBOutlet var labelOutlet: popoverLabel!
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -25,7 +27,11 @@ class ViewController: UIViewController {
     
     @IBAction func generateButton(_ sender: UIButton) {
     
-
+        functions.getText(type: .simple, from: jokes.url, key: jokes.key) { (value) in
+            self.labelOutlet.textLabel.text = value
+            self.view.addSubview(self.labelOutlet)
+            self.labelOutlet.center = self.view.center
+        }
         
     }
     

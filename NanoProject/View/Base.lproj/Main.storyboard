@@ -39,15 +39,28 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="labelOutlet" destination="Zha-0W-cOv" id="5J8-hJ-T5d"/>
                         <outlet property="textViewOutlet" destination="klf-1C-fN1" id="Ps4-d6-pGi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="Zha-0W-cOv" customClass="popoverLabel" customModule="NanoProject" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZt-NC-Irc">
+                            <rect key="frame" x="32" y="16" width="256" height="287"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <viewLayoutGuide key="safeArea" id="gNP-4u-q4i"/>
+                    <connections>
+                        <outlet property="textLabel" destination="dZt-NC-Irc" id="6r3-Z7-P8h"/>
+                    </connections>
                 </view>
                 <view contentMode="scaleToFill" id="ArG-bd-oKV" customClass="popoverImage" customModule="NanoProject" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>

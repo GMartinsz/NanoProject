@@ -10,6 +10,7 @@ import UIKit
 
 class popoverLabel : UIView {
     
+    @IBOutlet weak var textLabel: UILabel!
     let screenSize = UIScreen.main.bounds.size
     
     
