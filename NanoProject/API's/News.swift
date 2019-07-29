@@ -8,13 +8,11 @@
 
 
 import Alamofire
-import SwiftyJSON
-import UIKit
 
 typealias noticia = (UIImage, [String:Any]) -> Void
 
-class News : UIView {
-    
+class News {
+        
     //Variaveis de busca
     var country = String()
     var urlImagem: URL?
@@ -27,10 +25,13 @@ class News : UIView {
     var everythingUrl = URLComponents(string: "https://newsapi.org/v2/everything?")
     var sourcesUrl = URLComponents(string: "https://newsapi.org/v2/sources?") // convenience endpoint for tracking publishers
 
+<<<<<<< HEAD
     //Completion
     
 //    typealias noticia = (UIImage, [String:Any]) -> Void
     
     //Funcoes
     
+=======
+>>>>>>> a1bacb9ce175a320969a95a63902baf2e093dcec
 }
