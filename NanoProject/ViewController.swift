@@ -14,10 +14,15 @@ import SwiftyJSON
 
 
 class ViewController: UIViewController {
+    
+    
+    var news = News()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       news.searchTopHeadlines()
         
         // Do any additional setup after loading the view.
     }
