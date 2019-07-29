@@ -16,16 +16,17 @@ import SwiftyJSON
 class ViewController: UIViewController {
     
     
-    var news = News()
-
-    var urls = ["https://icanhazdadjoke.com/", "https://api.chucknorris.io/jokes/random"]
-    var keys = ["joke", "value"]
-    let quote = Quote()
+   
+    
+    
+    @IBOutlet var popoverFactsCN: FactsCN!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.addSubview(popoverFactsCN)
         news.searchTopHeadlines()
+   
         quote.getData { (value) in
             print(value)
         }

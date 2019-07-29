@@ -1,16 +1,22 @@
 //
-//  apisMarcelo.swift
+//  ExecuteViewController.swift
 //  NanoProject
 //
-//  Created by Marcelo Henrique de Sousa Carvalho on 26/07/19.
+//  Created by Guilherme Martins Dalosto de Oliveira on 29/07/19.
 //  Copyright © 2019 Guilherme Martins Dalosto de Oliveira. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import Alamofire
 import SwiftyJSON
 
-extension ViewController {
+class ExecuteViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+    }
     
     func getText(from url: String, key: String, completion: @escaping (String) -> ()) {
         Alamofire.request(url, method: .get, parameters: [:], encoding: JSONEncoding.default, headers: ["Accept": "application/json"]).responseData { (responseData) in
@@ -21,4 +27,12 @@ extension ViewController {
         }
     }
     
+    
+    
+    
+    
+    
+    
+    
+
 }

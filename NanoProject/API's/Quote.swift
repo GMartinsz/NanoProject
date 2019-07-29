@@ -6,37 +6,12 @@
 //  Copyright © 2019 Guilherme Martins Dalosto de Oliveira. All rights reserved.
 //
 
-import Alamofire
-import SwiftyJSON
 
-class Quote {
+import UIKit
+
+class Quote : UIView {
     
     let url = "https://favqs.com/api/qotd"
-    
-    func getData( completion: @escaping (String) -> ()){
-        
-        Alamofire.request(url, method: .get, parameters: [:], encoding: JSONEncoding.default, headers: ["Accept" : "application/json]"]).responseJSON { (responseData) in
-
-            let jsonData = JSON(responseData.result.value!)
-            let DOjsonData = jsonData.dictionaryObject
-            print(DOjsonData)
-
-        }
-        
-        
-    }
-        
-        
-    
-    
-    
-    func retrieveData(){
-        getData { (value) in
-            print(value)
-        }
-    }
-    
-  
-    
+    let key ""
     
 }
