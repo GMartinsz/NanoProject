@@ -15,12 +15,18 @@ import SwiftyJSON
 
 class ViewController: UIViewController {
 
+<<<<<<< HEAD
     var urls = ["https://icanhazdadjoke.com/", "https://api.chucknorris.io/jokes/random"]
     var keys = ["joke", "value"]
     
+=======
+    let quote = Quote()
+>>>>>>> randomquote
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        quote.getData { (value) in
+            print(value)
+        }
         // Do any additional setup after loading the view.
     }
     
