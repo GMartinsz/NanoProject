@@ -6,12 +6,10 @@
 //  Copyright © 2019 Guilherme Martins Dalosto de Oliveira. All rights reserved.
 //
 
-import Foundation
-import UIKit
-
-class FactsCN : UIView{
+class FactsCN  {
     
     let url = "https://api.chucknorris.io/jokes/random"
     let key = "value"
+    
     
 }

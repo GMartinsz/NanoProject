@@ -10,7 +10,9 @@
 		A11154529E46D577250AB319 /* Pods_NanoProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459A853375E5CF8D6E4406F1 /* Pods_NanoProject.framework */; };
 		AC5239C622EF662900E5F312 /* Jokes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5239C522EF662900E5F312 /* Jokes.swift */; };
 		AC5239C822EF664B00E5F312 /* FactsCN.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5239C722EF664B00E5F312 /* FactsCN.swift */; };
-		AC5239CA22EF66B900E5F312 /* ExecuteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5239C922EF66B900E5F312 /* ExecuteViewController.swift */; };
+		AC5239CE22EF705400E5F312 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5239CD22EF705400E5F312 /* Functions.swift */; };
+		AC5239D022EF763000E5F312 /* popoverLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5239CF22EF763000E5F312 /* popoverLabel.swift */; };
+		AC5239D322EF776B00E5F312 /* popoverImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5239D222EF776B00E5F312 /* popoverImage.swift */; };
 		ACE2F08322EA3C0300C5A002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE2F08222EA3C0300C5A002 /* AppDelegate.swift */; };
 		ACE2F08522EA3C0300C5A002 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE2F08422EA3C0300C5A002 /* ViewController.swift */; };
 		ACE2F08822EA3C0300C5A002 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE2F08622EA3C0300C5A002 /* Main.storyboard */; };
@@ -26,7 +28,9 @@
 		459A853375E5CF8D6E4406F1 /* Pods_NanoProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NanoProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC5239C522EF662900E5F312 /* Jokes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jokes.swift; sourceTree = "<group>"; };
 		AC5239C722EF664B00E5F312 /* FactsCN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsCN.swift; sourceTree = "<group>"; };
-		AC5239C922EF66B900E5F312 /* ExecuteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuteViewController.swift; sourceTree = "<group>"; };
+		AC5239CD22EF705400E5F312 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		AC5239CF22EF763000E5F312 /* popoverLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popoverLabel.swift; sourceTree = "<group>"; };
+		AC5239D222EF776B00E5F312 /* popoverImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popoverImage.swift; sourceTree = "<group>"; };
 		ACE2F07F22EA3C0300C5A002 /* NanoProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NanoProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE2F08222EA3C0300C5A002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACE2F08422EA3C0300C5A002 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +73,23 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		AC5239CC22EF6F3100E5F312 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AC5239CD22EF705400E5F312 /* Functions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		AC5239D122EF775100E5F312 /* Popovers */ = {
+			isa = PBXGroup;
+			children = (
+				AC5239CF22EF763000E5F312 /* popoverLabel.swift */,
+				AC5239D222EF776B00E5F312 /* popoverImage.swift */,
+			);
+			path = Popovers;
+			sourceTree = "<group>";
+		};
 		ACE2F07622EA3C0300C5A002 = {
 			isa = PBXGroup;
 			children = (
@@ -90,9 +111,11 @@
 		ACE2F08122EA3C0300C5A002 /* NanoProject */ = {
 			isa = PBXGroup;
 			children = (
+				AC5239D122EF775100E5F312 /* Popovers */,
 				ACE2F0A522EF64AB00C5A002 /* Database */,
-				ACE2F0A422EF648A00C5A002 /* API's */,
 				ACE2F0A122EF646200C5A002 /* Controller */,
+				AC5239CC22EF6F3100E5F312 /* Utils */,
+				ACE2F0A422EF648A00C5A002 /* API's */,
 				ACE2F0A022EF645E00C5A002 /* View */,
 				ACE2F08222EA3C0300C5A002 /* AppDelegate.swift */,
 				ACE2F08C22EA3C0400C5A002 /* Assets.xcassets */,
@@ -114,7 +137,6 @@
 			isa = PBXGroup;
 			children = (
 				ACE2F08422EA3C0300C5A002 /* ViewController.swift */,
-				AC5239C922EF66B900E5F312 /* ExecuteViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -255,12 +277,14 @@
 			files = (
 				ACE2F08522EA3C0300C5A002 /* ViewController.swift in Sources */,
 				AC5239C822EF664B00E5F312 /* FactsCN.swift in Sources */,
+				AC5239CE22EF705400E5F312 /* Functions.swift in Sources */,
 				ACE2F08322EA3C0300C5A002 /* AppDelegate.swift in Sources */,
 				AC5239C622EF662900E5F312 /* Jokes.swift in Sources */,
 				E6E2FF3A22EB8E2200DD9D7B /* News.swift in Sources */,
-				AC5239CA22EF66B900E5F312 /* ExecuteViewController.swift in Sources */,
 				ACE2F09C22EB932F00C5A002 /* Quote.swift in Sources */,
+				AC5239D022EF763000E5F312 /* popoverLabel.swift in Sources */,
 				ACE2F08B22EA3C0300C5A002 /* NanoProject.xcdatamodeld in Sources */,
+				AC5239D322EF776B00E5F312 /* popoverImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
