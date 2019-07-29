@@ -15,10 +15,12 @@ import SwiftyJSON
 
 class ViewController: UIViewController {
 
-
+    let quote = Quote()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        quote.getData { (value) in
+            print(value)
+        }
         // Do any additional setup after loading the view.
     }
     

@@ -9,16 +9,42 @@
 import Alamofire
 import SwiftyJSON
 
-class Quote{
+class Quote {
     
-    func getData(_ completion: (String) -> Void){
-    let urlRequest = "http://quotes.rest/qod.json?category=inspire"
+    let url = "https://favqs.com/api/qotd"
     
-    Alamofire.request
+    func getData( completion: @escaping (String) -> ()){
+        
+        Alamofire.request(url, method: .get, parameters: [:], encoding: JSONEncoding.default, headers: ["Accept" : "application/json]"]).responseJSON { (responseData) in
+            
+        
+            let jsonData = JSON(responseData.result.value!)
+            let DOjsonData = jsonData.dictionaryObject
+            print(DOjsonData)
+            
+            //completion(DOjsonData[""])
+
+        
+        
+        
+            
+            
+        }
+        
+        
+    }
+        
+        
     
     
+    
+    func retrieveData(){
+        getData { (value) in
+            print(value)
+        }
     }
     
+  
     
     
 }
