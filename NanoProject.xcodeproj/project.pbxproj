@@ -86,18 +86,50 @@
 		ACE2F08122EA3C0300C5A002 /* NanoProject */ = {
 			isa = PBXGroup;
 			children = (
-				A440F77E22EB8D55004EB953 /* apisMarcelo.swift */,
+				ACE2F0A522EF64AB00C5A002 /* Database */,
+				ACE2F0A422EF648A00C5A002 /* API's */,
+				ACE2F0A122EF646200C5A002 /* Controller */,
+				ACE2F0A022EF645E00C5A002 /* View */,
 				ACE2F08222EA3C0300C5A002 /* AppDelegate.swift */,
-				ACE2F08422EA3C0300C5A002 /* ViewController.swift */,
-				ACE2F08622EA3C0300C5A002 /* Main.storyboard */,
 				ACE2F08C22EA3C0400C5A002 /* Assets.xcassets */,
-				ACE2F08E22EA3C0400C5A002 /* LaunchScreen.storyboard */,
 				ACE2F09122EA3C0400C5A002 /* Info.plist */,
-				ACE2F08922EA3C0300C5A002 /* NanoProject.xcdatamodeld */,
-				E6E2FF3922EB8E2200DD9D7B /* News.swift */,
-				ACE2F09B22EB932F00C5A002 /* Quote.swift */,
 			);
 			path = NanoProject;
+			sourceTree = "<group>";
+		};
+		ACE2F0A022EF645E00C5A002 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ACE2F08E22EA3C0400C5A002 /* LaunchScreen.storyboard */,
+				ACE2F08622EA3C0300C5A002 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		ACE2F0A122EF646200C5A002 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				ACE2F08422EA3C0300C5A002 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		ACE2F0A422EF648A00C5A002 /* API's */ = {
+			isa = PBXGroup;
+			children = (
+				E6E2FF3922EB8E2200DD9D7B /* News.swift */,
+				ACE2F09B22EB932F00C5A002 /* Quote.swift */,
+				A440F77E22EB8D55004EB953 /* apisMarcelo.swift */,
+			);
+			path = "API's";
+			sourceTree = "<group>";
+		};
+		ACE2F0A522EF64AB00C5A002 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				ACE2F08922EA3C0300C5A002 /* NanoProject.xcdatamodeld */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

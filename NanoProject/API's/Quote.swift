@@ -16,19 +16,11 @@ class Quote {
     func getData( completion: @escaping (String) -> ()){
         
         Alamofire.request(url, method: .get, parameters: [:], encoding: JSONEncoding.default, headers: ["Accept" : "application/json]"]).responseJSON { (responseData) in
-            
-        
+
             let jsonData = JSON(responseData.result.value!)
             let DOjsonData = jsonData.dictionaryObject
             print(DOjsonData)
-            
-            //completion(DOjsonData[""])
 
-        
-        
-        
-            
-            
         }
         
         
