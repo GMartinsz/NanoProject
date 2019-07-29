@@ -44,11 +44,13 @@ class ViewController: UIViewController {
         functions.searchTopHeadlines(topHeadLinesUrl: apiTopHead, pais: apiNews.country, apiKey: apiNews.apiKey) { (imagem, artigo) in
             guard let content = artigo["description"] else {return}
             guard let title = artigo["title"] else {return}
+            guard let urlDestino = artigo["url"] else {return}
             self.popoverImagem.imagem.image = imagem
             self.popoverImagem.noticia.text =  (content as! String)
             self.view.addSubview(self.popoverImagem)
             self.popoverImagem.center = self.view.center
             self.popoverImagem.tituloNoticia.text = (title as! String)
+            self.popoverImagem.url = URL(string: urlDestino as! String)
 
         }
         
