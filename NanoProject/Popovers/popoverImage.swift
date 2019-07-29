@@ -10,9 +10,10 @@ import Foundation
 import UIKit
 
 class popoverImage : UIView {
+    let screenSize = UIScreen.main.bounds.size
     
     
-    
+   
     
     
     
