@@ -15,8 +15,10 @@ import SwiftyJSON
 class ViewController: UIViewController {
 
     @IBOutlet var popoverImagem: popoverImage!
-    let functions = Functions()
     @IBOutlet var labelOutlet: popoverLabel!
+    
+    var canButton = false
+    let functions = Functions()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,22 +26,23 @@ class ViewController: UIViewController {
     
     @IBAction func generateButton(_ sender: UIButton) {
         
-//        let numAleatorio = randomContent(limite: 3)
-        popoverImagem.removeFromSuperview()
-        labelOutlet.removeFromSuperview()
-//        conteudoNews()
-        let index = Int.random(in: 0...3)
-        switch index {
-        case 0:
-            getJokes()
-        case 1:
-            getCNFacts()
-        case 2:
-            getQuotes()
-        case 3:
-            conteudoNews()
-        default:
-            getJokes()
+        canButton = !canButton
+        if canButton{
+            popoverImagem.removeFromSuperview()
+            labelOutlet.removeFromSuperview()
+            let index = Int.random(in: 0...3)
+            switch index {
+            case 0:
+                getJokes()
+            case 1:
+                getCNFacts()
+            case 2:
+                getQuotes()
+            case 3:
+                conteudoNews()
+            default:
+                getJokes()
+            }
         }
         
     }
@@ -56,6 +59,7 @@ class ViewController: UIViewController {
             self.view.addSubview(self.popoverImagem)
             self.popoverImagem.center = self.view.center
             self.popoverImagem.tituloNoticia.text = (title as! String)
+            self.canButton = !self.canButton
 
         }
         
@@ -67,6 +71,7 @@ class ViewController: UIViewController {
             self.labelOutlet.textLabel.text = value
             self.view.addSubview(self.labelOutlet)
             self.labelOutlet.center = self.view.center
+            self.canButton = !self.canButton
         }
     }
     
@@ -76,6 +81,7 @@ class ViewController: UIViewController {
             self.labelOutlet.textLabel.text = value
             self.view.addSubview(self.labelOutlet)
             self.labelOutlet.center = self.view.center
+            self.canButton = !self.canButton
         }
     }
     
@@ -85,15 +91,9 @@ class ViewController: UIViewController {
             self.labelOutlet.textLabel.text = value
             self.view.addSubview(self.labelOutlet)
             self.labelOutlet.center = self.view.center
+            self.canButton = !self.canButton
         }
     }
-    
-    func randomContent(limite: Int) -> Int{
-        var index = Int()
-        index = Int.random(in: 0...limite)
-        return index
-    }
-    
     
 
 }
