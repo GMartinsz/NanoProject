@@ -18,18 +18,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="klf-1C-fN1">
-                                <rect key="frame" x="87" y="565" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kea-Lr-ZCY">
-                                <rect key="frame" x="106" y="252" width="202" height="207"/>
+                                <rect key="frame" x="20" y="788" width="374" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.8881459236" green="0.31211768763106462" blue="0.29836125961334525" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="24"/>
+                                <state key="normal" title="Gerar Conteúdo">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="generateButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lRJ-SZ-sdr"/>
                                 </connections>
@@ -39,7 +35,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="textViewOutlet" destination="klf-1C-fN1" id="Ps4-d6-pGi"/>
+                        <outlet property="popoverImagem" destination="ArG-bd-oKV" id="Xnr-GI-vrU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -50,13 +46,50 @@
                     <viewLayoutGuide key="safeArea" id="gNP-4u-q4i"/>
                 </view>
                 <view contentMode="scaleToFill" id="ArG-bd-oKV" customClass="popoverImage" customModule="NanoProject" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <rect key="frame" x="0.0" y="0.0" width="319" height="520"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="VXk-Nn-ZhB">
+                            <rect key="frame" x="10" y="278" width="299" height="208"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Z7g-Ej-7ct">
+                            <rect key="frame" x="10" y="114" width="299" height="156"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Título" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGM-I8-eIH">
+                            <rect key="frame" x="10" y="20" width="299" height="64"/>
+                            <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="23"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Pjg-OK-bNB" firstAttribute="trailing" secondItem="VXk-Nn-ZhB" secondAttribute="trailing" constant="10" id="7Ol-Hx-prT"/>
+                        <constraint firstItem="Z7g-Ej-7ct" firstAttribute="height" secondItem="ArG-bd-oKV" secondAttribute="height" multiplier="0.3" id="8pH-9n-09P"/>
+                        <constraint firstItem="Z7g-Ej-7ct" firstAttribute="centerY" secondItem="ArG-bd-oKV" secondAttribute="centerY" constant="-68" id="9KP-Od-qBa"/>
+                        <constraint firstItem="VXk-Nn-ZhB" firstAttribute="leading" secondItem="Pjg-OK-bNB" secondAttribute="leading" constant="10" id="DNL-zh-H71"/>
+                        <constraint firstItem="Pjg-OK-bNB" firstAttribute="trailing" secondItem="Z7g-Ej-7ct" secondAttribute="trailing" constant="10" id="LUj-ju-nvN"/>
+                        <constraint firstItem="VXk-Nn-ZhB" firstAttribute="height" secondItem="ArG-bd-oKV" secondAttribute="height" multiplier="0.4" id="Qun-Ho-q0z"/>
+                        <constraint firstItem="Z7g-Ej-7ct" firstAttribute="top" secondItem="YGM-I8-eIH" secondAttribute="bottom" constant="30" id="XHH-Oq-foJ"/>
+                        <constraint firstItem="Pjg-OK-bNB" firstAttribute="trailing" secondItem="YGM-I8-eIH" secondAttribute="trailing" constant="10" id="XZo-XC-J1J"/>
+                        <constraint firstItem="YGM-I8-eIH" firstAttribute="leading" secondItem="Pjg-OK-bNB" secondAttribute="leading" constant="10" id="bYp-gO-SMD"/>
+                        <constraint firstItem="Z7g-Ej-7ct" firstAttribute="leading" secondItem="Pjg-OK-bNB" secondAttribute="leading" constant="10" id="ePy-9x-csy"/>
+                        <constraint firstItem="YGM-I8-eIH" firstAttribute="top" secondItem="ArG-bd-oKV" secondAttribute="top" constant="20" id="euB-bC-MKa"/>
+                        <constraint firstItem="VXk-Nn-ZhB" firstAttribute="centerY" secondItem="ArG-bd-oKV" secondAttribute="centerY" constant="122" id="hJs-rT-WV6"/>
+                    </constraints>
                     <viewLayoutGuide key="safeArea" id="Pjg-OK-bNB"/>
+                    <connections>
+                        <outlet property="imagem" destination="Z7g-Ej-7ct" id="9WH-3y-laW"/>
+                        <outlet property="noticia" destination="VXk-Nn-ZhB" id="6gF-uK-tcl"/>
+                        <outlet property="tituloNoticia" destination="YGM-I8-eIH" id="Fgs-Y9-Ek5"/>
+                    </connections>
                 </view>
             </objects>
-            <point key="canvasLocation" x="30" y="76"/>
+            <point key="canvasLocation" x="28.985507246376812" y="75.669642857142847"/>
         </scene>
     </scenes>
 </document>

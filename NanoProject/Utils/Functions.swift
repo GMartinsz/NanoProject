@@ -34,10 +34,11 @@ class Functions {
     }
     
     //News
-    func searchTopHeadlines (topHeadLinesUrl: URLComponents, pais: URLQueryItem, apiKey: URLQueryItem, completion: @escaping noticia ){
-        let pais = URLQueryItem(name: "country", value: "br")
+    func searchTopHeadlines (topHeadLinesUrl: URLComponents, pais: String, apiKey: URLQueryItem, completion: @escaping noticia ){
+        
+        let paisUrl = URLQueryItem(name: "country", value: pais)
         var aux = topHeadLinesUrl
-        aux.queryItems?.append(pais)
+        aux.queryItems?.append(paisUrl)
         aux.queryItems?.append(apiKey)
         
         Alamofire.request(aux).responseJSON { (data) in
@@ -46,12 +47,14 @@ class Functions {
             guard let dicionario = json.dictionaryObject else {return}
             guard let artigos = dicionario["articles"] as? [[String: AnyObject]] else {return}
             
-            let index = self.generateIndex(limite: dicionario["totalResults"] as! Int)
+            let index = self.generateIndex(limite: artigos.count)
             let artigo = artigos[index]
             let urlImagem = URL(string: artigo["urlToImage"] as! String)
             
-            guard let imagemBaixada = self.baixarImagem(url: urlImagem!) else {return}
-            completion(imagemBaixada, artigo)
+            self.baixarImagem(url: urlImagem!, completion: { (image) in
+                completion(image, artigo)
+            })
+            
         }
     }
     
@@ -65,7 +68,7 @@ class Functions {
     
     
     
-    func baixarImagem(url: URL) -> UIImage?{
+    func baixarImagem(url: URL, completion: @escaping (UIImage?) -> Void){
         var imagem: UIImage?
         
         Alamofire.request(url, method: .get).responseData { response in
@@ -73,9 +76,8 @@ class Functions {
                 return
             }
             imagem = UIImage(data: imageData)
-            
+            completion(imagem)
         }
-        return imagem
     }
     
     

@@ -9,7 +9,7 @@
 
 import Alamofire
 
-typealias noticia = (UIImage, [String:Any]) -> Void
+typealias noticia = (UIImage?, [String:Any]) -> Void
 
 class News {
         

@@ -11,9 +11,11 @@ import UIKit
 
 class popoverImage : UIView {
     
+    @IBOutlet weak var imagem: UIImageView!
+
+    @IBOutlet weak var noticia: UITextView!
     
-    
-    
+    @IBOutlet weak var tituloNoticia: UILabel!
     
     
     
