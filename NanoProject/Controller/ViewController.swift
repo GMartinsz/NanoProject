@@ -21,21 +21,29 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        buttonOutlet.layer.cornerRadius = 30
+        buttonOutlet.layer.borderWidth = 1
+        
     }
+    
+    func aleatorio(){
+       
+            
+    }
+    
+    @IBOutlet weak var buttonOutlet: UIButton!
     
     @IBAction func generateButton(_ sender: UIButton) {
         
-//        let numAleatorio = randomContent(limite: 3)
-        conteudoNews()
-//        functions.getText(type: .simple, from: jokes.url, key: jokes.key) { (value) in
-//            self.labelOutlet.textLabel.text = value
-//            self.view.addSubview(self.labelOutlet)
-//            self.labelOutlet.center = self.view.center
-//        }
+        
+        //conteudoNews()
+      
         
        
         
     }
+    
+    
     
     func conteudoNews(){
         let apiNews = News()
@@ -54,12 +62,7 @@ class ViewController: UIViewController {
         
     }
     
-    
-    func randomContent(limite: Int) -> Int{
-        var index = Int()
-        index = Int.random(in: 0...limite)
-        return index
-    }
+
     
     
 
