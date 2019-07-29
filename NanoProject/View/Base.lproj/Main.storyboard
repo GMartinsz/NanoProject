@@ -58,6 +58,7 @@
                     </view>
                     <connections>
                         <outlet property="popoverFactsCN" destination="fFO-G3-CIQ" id="bJq-Z7-MQ9"/>
+                        <outlet property="popoverNews" destination="mAp-MH-UzZ" id="npG-v0-7rz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eLP-o4-qST" userLabel="First Responder" sceneMemberID="firstResponder"/>
