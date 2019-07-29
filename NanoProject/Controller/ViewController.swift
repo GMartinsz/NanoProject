@@ -16,7 +16,6 @@ class ViewController: UIViewController {
 
     @IBOutlet var popoverImagem: popoverImage!
     let functions = Functions()
-    let jokes = Jokes()
     @IBOutlet var labelOutlet: popoverLabel!
 
     override func viewDidLoad() {
@@ -26,14 +25,22 @@ class ViewController: UIViewController {
     @IBAction func generateButton(_ sender: UIButton) {
         
 //        let numAleatorio = randomContent(limite: 3)
-        conteudoNews()
-//        functions.getText(type: .simple, from: jokes.url, key: jokes.key) { (value) in
-//            self.labelOutlet.textLabel.text = value
-//            self.view.addSubview(self.labelOutlet)
-//            self.labelOutlet.center = self.view.center
-//        }
-        
-       
+        popoverImagem.removeFromSuperview()
+        labelOutlet.removeFromSuperview()
+//        conteudoNews()
+        let index = Int.random(in: 0...3)
+        switch index {
+        case 0:
+            getJokes()
+        case 1:
+            getCNFacts()
+        case 2:
+            getQuotes()
+        case 3:
+            conteudoNews()
+        default:
+            getJokes()
+        }
         
     }
     
@@ -54,6 +61,32 @@ class ViewController: UIViewController {
         
     }
     
+    func getJokes(){
+        let jokes = Jokes()
+        functions.getText(type: .simple, from: jokes.url, key: jokes.key) { (value) in
+            self.labelOutlet.textLabel.text = value
+            self.view.addSubview(self.labelOutlet)
+            self.labelOutlet.center = self.view.center
+        }
+    }
+    
+    func getCNFacts(){
+        let facts = FactsCN()
+        functions.getText(type: .simple, from: facts.url, key: facts.key) { (value) in
+            self.labelOutlet.textLabel.text = value
+            self.view.addSubview(self.labelOutlet)
+            self.labelOutlet.center = self.view.center
+        }
+    }
+    
+    func getQuotes(){
+        let quotes = Quote()
+        functions.getText(type: .quotes, from: quotes.url, key: quotes.key) { (value) in
+            self.labelOutlet.textLabel.text = value
+            self.view.addSubview(self.labelOutlet)
+            self.labelOutlet.center = self.view.center
+        }
+    }
     
     func randomContent(limite: Int) -> Int{
         var index = Int()
