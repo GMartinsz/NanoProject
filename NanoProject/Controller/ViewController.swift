@@ -14,6 +14,7 @@ import SwiftyJSON
 
 class ViewController: UIViewController {
 
+    @IBOutlet var imagePopover: UIImageView!
     @IBOutlet var popoverImagem: popoverImage!
     @IBOutlet var labelOutlet: popoverLabel!
     
@@ -27,11 +28,7 @@ class ViewController: UIViewController {
         buttonOutlet.backgroundColor = .init(red: 0.9, green: 0.40, blue: 0.20, alpha: 1)
         
     }
-    
-    func aleatorio(){
-       
-            
-    }
+
     
     @IBOutlet weak var buttonOutlet: UIButton!
     
@@ -40,6 +37,7 @@ class ViewController: UIViewController {
 
         canButton = !canButton
         if canButton{
+            imagePopover.removeFromSuperview()
             popoverImagem.removeFromSuperview()
             labelOutlet.removeFromSuperview()
             let index = Int.random(in: 0...6)
@@ -163,14 +161,14 @@ class ViewController: UIViewController {
     }
     
     func getMemes(){
-        Alamofire.request("https://meme-api.herokuapp.com/gimme").responseData { response in
+        Alamofire.request("https://meme-api.herokuapp.com/gimme/memes").responseData { response in
             let data = JSON(response.result.value!)
             let dataDO = data.dictionaryObject
             let url = dataDO!["url"] as! String
             self.functions.baixarImagem(url: URL(string: url)!, completion: { (imagem) in
-                self.popoverImagem.imagem.image = imagem
-                self.view.addSubview(self.popoverImagem)
-                self.popoverImagem.center = self.view.center
+                self.imagePopover.image = imagem
+                self.view.addSubview(self.imagePopover)
+                self.imagePopover.center = self.view.center
                 self.canButton = !self.canButton
             })
         }
