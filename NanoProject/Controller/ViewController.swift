@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         if canButton{
             popoverImagem.removeFromSuperview()
             labelOutlet.removeFromSuperview()
-            let index = Int.random(in: 0...4)
+            let index = Int.random(in: 0...5)
             switch index {
             case 0:
                 getJokes()
@@ -69,8 +69,13 @@ class ViewController: UIViewController {
                 self.view.backgroundColor = .init(red: 1, green: 0.2, blue: 0.2, alpha: 1)
                 self.popoverImagem.backgroundColor = self.view.backgroundColor
                 self.labelOutlet.backgroundColor = self.view.backgroundColor
+            case 5:
+                getCatFacts()
+                self.view.backgroundColor = .init(red: 1, green: 0.8, blue: 0.05, alpha: 1)
+                self.popoverImagem.backgroundColor = self.view.backgroundColor
+                self.labelOutlet.backgroundColor = self.view.backgroundColor
             default:
-                getJokes()
+                getCatFacts()
                 self.view.backgroundColor = .init(red: 1, green: 0.8, blue: 0.05, alpha: 1)
                 self.popoverImagem.backgroundColor = self.view.backgroundColor
                 self.labelOutlet.backgroundColor = self.view.backgroundColor
@@ -145,6 +150,15 @@ class ViewController: UIViewController {
         }
     }
     
+    func getCatFacts(){
+        let catFacts = CatFacts()
+        functions.getText(type: .simple, from: catFacts.url, key: catFacts.key) { (value) in
+            self.labelOutlet.textLabel.text = value
+            self.view.addSubview(self.labelOutlet)
+            self.labelOutlet.center = self.view.center
+            self.canButton = !self.canButton
+        }
+    }
 
 }
 

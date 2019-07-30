@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A11154529E46D577250AB319 /* Pods_NanoProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459A853375E5CF8D6E4406F1 /* Pods_NanoProject.framework */; };
+		A478DD0E22F0B78D00404EAC /* CatFacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A478DD0D22F0B78D00404EAC /* CatFacts.swift */; };
 		AC5239C622EF662900E5F312 /* Jokes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5239C522EF662900E5F312 /* Jokes.swift */; };
 		AC5239C822EF664B00E5F312 /* FactsCN.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5239C722EF664B00E5F312 /* FactsCN.swift */; };
 		AC5239CE22EF705400E5F312 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5239CD22EF705400E5F312 /* Functions.swift */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		072E30A18069334E668D9344 /* Pods-NanoProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NanoProject.debug.xcconfig"; path = "Target Support Files/Pods-NanoProject/Pods-NanoProject.debug.xcconfig"; sourceTree = "<group>"; };
 		459A853375E5CF8D6E4406F1 /* Pods_NanoProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NanoProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A478DD0D22F0B78D00404EAC /* CatFacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatFacts.swift; sourceTree = "<group>"; };
 		AC5239C522EF662900E5F312 /* Jokes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jokes.swift; sourceTree = "<group>"; };
 		AC5239C722EF664B00E5F312 /* FactsCN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsCN.swift; sourceTree = "<group>"; };
 		AC5239CD22EF705400E5F312 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				AC5239C522EF662900E5F312 /* Jokes.swift */,
 				AC5239C722EF664B00E5F312 /* FactsCN.swift */,
 				AC5239D422EF8F4800E5F312 /* Insults.swift */,
+				A478DD0D22F0B78D00404EAC /* CatFacts.swift */,
 			);
 			path = "API's";
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				AC5239CE22EF705400E5F312 /* Functions.swift in Sources */,
 				ACE2F08322EA3C0300C5A002 /* AppDelegate.swift in Sources */,
 				AC5239C622EF662900E5F312 /* Jokes.swift in Sources */,
+				A478DD0E22F0B78D00404EAC /* CatFacts.swift in Sources */,
 				E6E2FF3A22EB8E2200DD9D7B /* News.swift in Sources */,
 				ACE2F09C22EB932F00C5A002 /* Quote.swift in Sources */,
 				AC5239D022EF763000E5F312 /* popoverLabel.swift in Sources */,
