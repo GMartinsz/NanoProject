@@ -18,9 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kea-Lr-ZCY">
-                                <rect key="frame" x="20" y="788" width="374" height="54"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kea-Lr-ZCY">
+                                <rect key="frame" x="20.5" y="782" width="373" height="67"/>
                                 <color key="backgroundColor" red="0.8881459236" green="0.31211768763106462" blue="0.29836125961334525" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="24"/>
                                 <state key="normal" title="Gerar Conteúdo">
@@ -32,9 +31,16 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.9193179011" green="0.73382925990000003" blue="0.25081995130000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="Kea-Lr-ZCY" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="1.8" id="CPI-oe-uKd"/>
+                            <constraint firstItem="Kea-Lr-ZCY" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="HIp-hO-vU4"/>
+                            <constraint firstItem="Kea-Lr-ZCY" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.075" id="rNJ-8t-zMD"/>
+                            <constraint firstItem="Kea-Lr-ZCY" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.9" id="zSg-Qb-1AF"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="buttonOutlet" destination="Kea-Lr-ZCY" id="HTj-JK-xB1"/>
                         <outlet property="labelOutlet" destination="Zha-0W-cOv" id="5J8-hJ-T5d"/>
                         <outlet property="popoverImagem" destination="ArG-bd-oKV" id="Xnr-GI-vrU"/>
                     </connections>

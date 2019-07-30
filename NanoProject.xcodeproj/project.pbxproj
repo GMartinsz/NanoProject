@@ -13,6 +13,7 @@
 		AC5239CE22EF705400E5F312 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5239CD22EF705400E5F312 /* Functions.swift */; };
 		AC5239D022EF763000E5F312 /* popoverLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5239CF22EF763000E5F312 /* popoverLabel.swift */; };
 		AC5239D322EF776B00E5F312 /* popoverImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5239D222EF776B00E5F312 /* popoverImage.swift */; };
+		AC5239D522EF8F4800E5F312 /* Insults.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5239D422EF8F4800E5F312 /* Insults.swift */; };
 		ACE2F08322EA3C0300C5A002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE2F08222EA3C0300C5A002 /* AppDelegate.swift */; };
 		ACE2F08522EA3C0300C5A002 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE2F08422EA3C0300C5A002 /* ViewController.swift */; };
 		ACE2F08822EA3C0300C5A002 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE2F08622EA3C0300C5A002 /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 		AC5239CD22EF705400E5F312 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		AC5239CF22EF763000E5F312 /* popoverLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popoverLabel.swift; sourceTree = "<group>"; };
 		AC5239D222EF776B00E5F312 /* popoverImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popoverImage.swift; sourceTree = "<group>"; };
+		AC5239D422EF8F4800E5F312 /* Insults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insults.swift; sourceTree = "<group>"; };
 		ACE2F07F22EA3C0300C5A002 /* NanoProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NanoProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE2F08222EA3C0300C5A002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACE2F08422EA3C0300C5A002 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				ACE2F09B22EB932F00C5A002 /* Quote.swift */,
 				AC5239C522EF662900E5F312 /* Jokes.swift */,
 				AC5239C722EF664B00E5F312 /* FactsCN.swift */,
+				AC5239D422EF8F4800E5F312 /* Insults.swift */,
 			);
 			path = "API's";
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 			files = (
 				ACE2F08522EA3C0300C5A002 /* ViewController.swift in Sources */,
 				AC5239C822EF664B00E5F312 /* FactsCN.swift in Sources */,
+				AC5239D522EF8F4800E5F312 /* Insults.swift in Sources */,
 				AC5239CE22EF705400E5F312 /* Functions.swift in Sources */,
 				ACE2F08322EA3C0300C5A002 /* AppDelegate.swift in Sources */,
 				AC5239C622EF662900E5F312 /* Jokes.swift in Sources */,
