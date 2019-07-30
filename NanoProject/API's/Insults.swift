@@ -9,7 +9,7 @@
 class Insults {
     
     let url = "https://evilinsult.com/generate_insult.php?lang=en&type=json"
-    
+    let key = "insult"
     
     
 }

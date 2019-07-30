@@ -41,24 +41,26 @@ class ViewController: UIViewController {
         if canButton{
             popoverImagem.removeFromSuperview()
             labelOutlet.removeFromSuperview()
-            let index = Int.random(in: 0...3)
+            let index = Int.random(in: 0...4)
             switch index {
             case 0:
                 getJokes()
                 self.view.backgroundColor = .init(red: 1, green: 0.8, blue: 0.05, alpha: 1)
             case 1:
                 getCNFacts()
-               self.view.backgroundColor = .init(red: 0.8, green: 0.2, blue: 0.2, alpha: 1)
+                self.view.backgroundColor = .init(red: 0.8, green: 0.2, blue: 0.2, alpha: 1)
             case 2:
                 getQuotes()
-              self.view.backgroundColor = .init(red: 0.5, green: 0.52, blue: 0.6, alpha: 1)
+                self.view.backgroundColor = .init(red: 0.5, green: 0.52, blue: 0.6, alpha: 1)
             case 3:
                 conteudoNews()
                 self.view.backgroundColor = .init(red: 0, green: 0, blue: 0, alpha: 1)
-                
+            case 4:
+                getInsults()
+                self.view.backgroundColor = .init(red: 1, green: 0.2, blue: 0.2, alpha: 1)
             default:
                 getJokes()
-                  self.view.backgroundColor = .init(red: 1, green: 0.8, blue: 0.05, alpha: 1)
+                self.view.backgroundColor = .init(red: 1, green: 0.8, blue: 0.05, alpha: 1)
             }
         }
 
@@ -113,6 +115,16 @@ class ViewController: UIViewController {
     func getQuotes(){
         let quotes = Quote()
         functions.getText(type: .quotes, from: quotes.url, key: quotes.key) { (value) in
+            self.labelOutlet.textLabel.text = value
+            self.view.addSubview(self.labelOutlet)
+            self.labelOutlet.center = self.view.center
+            self.canButton = !self.canButton
+        }
+    }
+    
+    func getInsults(){
+        let insults = Insults()
+        functions.getText(type: .simple, from: insults.url, key: insults.key) { (value) in
             self.labelOutlet.textLabel.text = value
             self.view.addSubview(self.labelOutlet)
             self.labelOutlet.center = self.view.center
