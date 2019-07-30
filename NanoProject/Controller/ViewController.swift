@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         if canButton{
             popoverImagem.removeFromSuperview()
             labelOutlet.removeFromSuperview()
-            let index = Int.random(in: 0...5)
+            let index = Int.random(in: 0...6)
             switch index {
             case 0:
                 getJokes()
@@ -74,11 +74,13 @@ class ViewController: UIViewController {
                 self.view.backgroundColor = .init(red: 1, green: 0.8, blue: 0.05, alpha: 1)
                 self.popoverImagem.backgroundColor = self.view.backgroundColor
                 self.labelOutlet.backgroundColor = self.view.backgroundColor
-            default:
-                getCatFacts()
-                self.view.backgroundColor = .init(red: 1, green: 0.8, blue: 0.05, alpha: 1)
+            case 6:
+                getMemes()
+                self.view.backgroundColor = .init(red: 0, green: 0.8, blue: 0.2, alpha: 1)
                 self.popoverImagem.backgroundColor = self.view.backgroundColor
                 self.labelOutlet.backgroundColor = self.view.backgroundColor
+            default:
+                print("teste")
             }
         }
 
@@ -157,6 +159,20 @@ class ViewController: UIViewController {
             self.view.addSubview(self.labelOutlet)
             self.labelOutlet.center = self.view.center
             self.canButton = !self.canButton
+        }
+    }
+    
+    func getMemes(){
+        Alamofire.request("https://meme-api.herokuapp.com/gimme").responseData { response in
+            let data = JSON(response.result.value!)
+            let dataDO = data.dictionaryObject
+            let url = dataDO!["url"] as! String
+            self.functions.baixarImagem(url: URL(string: url)!, completion: { (imagem) in
+                self.popoverImagem.imagem.image = imagem
+                self.view.addSubview(self.popoverImagem)
+                self.popoverImagem.center = self.view.center
+                self.canButton = !self.canButton
+            })
         }
     }
 
