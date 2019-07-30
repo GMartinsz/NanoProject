@@ -26,7 +26,6 @@ class ViewController: UIViewController {
         buttonOutlet.layer.cornerRadius = 30
         buttonOutlet.layer.borderWidth = 1
         buttonOutlet.backgroundColor = .init(red: 0.9, green: 0.40, blue: 0.20, alpha: 1)
-        
     }
 
     
@@ -59,7 +58,7 @@ class ViewController: UIViewController {
                 self.labelOutlet.backgroundColor = self.view.backgroundColor
             case 3:
                 conteudoNews()
-                self.view.backgroundColor = .init(red: 0, green: 0, blue: 0, alpha: 1)
+                self.view.backgroundColor = .gray
                 self.popoverImagem.backgroundColor = self.view.backgroundColor
                 self.labelOutlet.backgroundColor = self.view.backgroundColor
             case 4:
@@ -98,7 +97,7 @@ class ViewController: UIViewController {
             self.popoverImagem.imagem.image = imagem
             self.popoverImagem.noticia.text =  (content as! String)
             self.view.addSubview(self.popoverImagem)
-            self.popoverImagem.center = self.view.center
+            self.newsOutletAutoLayout()
             self.popoverImagem.tituloNoticia.text = (title as! String)
             self.popoverImagem.url = URL(string: urlDestino as! String)
             self.canButton = !self.canButton
@@ -114,7 +113,7 @@ class ViewController: UIViewController {
         functions.getText(type: .simple, from: jokes.url, key: jokes.key) { (value) in
             self.labelOutlet.textLabel.text = value
             self.view.addSubview(self.labelOutlet)
-            self.labelOutlet.center = self.view.center
+            self.labelOutletAutoLayout()
             self.canButton = !self.canButton
         }
     }
@@ -124,7 +123,7 @@ class ViewController: UIViewController {
         functions.getText(type: .simple, from: facts.url, key: facts.key) { (value) in
             self.labelOutlet.textLabel.text = value
             self.view.addSubview(self.labelOutlet)
-            self.labelOutlet.center = self.view.center
+            self.labelOutletAutoLayout()
             self.canButton = !self.canButton
         }
     }
@@ -135,7 +134,7 @@ class ViewController: UIViewController {
         functions.getText(type: .quotes, from: quotes.url, key: quotes.key) { (value) in
             self.labelOutlet.textLabel.text = value
             self.view.addSubview(self.labelOutlet)
-            self.labelOutlet.center = self.view.center
+            self.labelOutletAutoLayout()
             self.canButton = !self.canButton
         }
     }
@@ -145,7 +144,7 @@ class ViewController: UIViewController {
         functions.getText(type: .simple, from: insults.url, key: insults.key) { (value) in
             self.labelOutlet.textLabel.text = value
             self.view.addSubview(self.labelOutlet)
-            self.labelOutlet.center = self.view.center
+            self.labelOutletAutoLayout()
             self.canButton = !self.canButton
         }
     }
@@ -155,7 +154,7 @@ class ViewController: UIViewController {
         functions.getText(type: .simple, from: catFacts.url, key: catFacts.key) { (value) in
             self.labelOutlet.textLabel.text = value
             self.view.addSubview(self.labelOutlet)
-            self.labelOutlet.center = self.view.center
+            self.labelOutletAutoLayout()
             self.canButton = !self.canButton
         }
     }
@@ -168,11 +167,45 @@ class ViewController: UIViewController {
             self.functions.baixarImagem(url: URL(string: url)!, completion: { (imagem) in
                 self.imagePopover.image = imagem
                 self.view.addSubview(self.imagePopover)
-                self.imagePopover.center = self.view.center
+                self.imageOutletAutoLayout()
                 self.canButton = !self.canButton
             })
         }
     }
+    
+    func labelOutletAutoLayout() {
+        self.labelOutlet.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(item: self.labelOutlet!, attribute: .centerX, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
+        
+        NSLayoutConstraint(item: self.labelOutlet!, attribute: .centerY, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .centerY, multiplier: 1.0, constant: 0.0).isActive = true
+        
+        NSLayoutConstraint(item: self.labelOutlet!, attribute: .height, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute:.height, multiplier: 0.5, constant:0.0).isActive = true
+        
+        NSLayoutConstraint(item: self.labelOutlet!, attribute: .width, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute:.width, multiplier: 0.8, constant:0.0).isActive = true
+    }
+    
+    func imageOutletAutoLayout() {
+        self.imagePopover.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(item: self.imagePopover!, attribute: .centerX, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
+        
+        NSLayoutConstraint(item: self.imagePopover!, attribute: .centerY, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .centerY, multiplier: 1.0, constant: 0.0).isActive = true
+        
+        NSLayoutConstraint(item: self.imagePopover!, attribute: .height, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute:.height, multiplier: 0.70, constant:0.0).isActive = true
+        
+        NSLayoutConstraint(item: self.imagePopover!, attribute: .width, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute:.width, multiplier: 0.8, constant:0.0).isActive = true
+    }
+    
+    func newsOutletAutoLayout() {
+        self.popoverImagem.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(item: self.popoverImagem!, attribute: .centerX, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
+        
+        NSLayoutConstraint(item: self.popoverImagem!, attribute: .centerY, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .centerY, multiplier: 1.0, constant: 0.0).isActive = true
+        
+        NSLayoutConstraint(item: self.popoverImagem!, attribute: .height, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute:.height, multiplier: 0.70, constant:0.0).isActive = true
+        
+        NSLayoutConstraint(item: self.popoverImagem!, attribute: .width, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute:.width, multiplier: 0.8, constant:0.0).isActive = true
+    }
+    
 
 }
 
