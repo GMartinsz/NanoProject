@@ -12,11 +12,10 @@ import Alamofire
 typealias noticia = (UIImage?, [String:Any]) -> Void
 
 class News {
-        
-    //Variaveis de busca
-    var country = String()
-    var urlImagem: URL?
     
+    
+    var country = String()
+
     //Key
     let apiKey = URLQueryItem(name: "apiKey", value: "21bf3a61068e4b61a3a5d06a0eed1963")
     

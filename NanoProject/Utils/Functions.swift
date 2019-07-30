@@ -34,11 +34,12 @@ class Functions {
     }
     
     //News
-    func searchTopHeadlines (topHeadLinesUrl: URLComponents, pais: String, apiKey: URLQueryItem, completion: @escaping noticia ){
+    func searchTopHeadlines (api:News, completion: @escaping noticia ){
+        guard var aux = api.topHeadLinesUrl else {return}
+        let apiKey = api.apiKey
+        let filterCountry = URLQueryItem(name: "country", value: api.country)
         
-        let paisUrl = URLQueryItem(name: "country", value: pais)
-        var aux = topHeadLinesUrl
-        aux.queryItems?.append(paisUrl)
+        aux.queryItems?.append(filterCountry)
         aux.queryItems?.append(apiKey)
         
         Alamofire.request(aux).responseJSON { (data) in
@@ -50,6 +51,35 @@ class Functions {
             let index = self.generateIndex(limite: artigos.count)
             let artigo = artigos[index]
             guard let urlImagem = URL(string: artigo["urlToImage"] as! String) else {return}
+            self.baixarImagem(url: urlImagem, completion: { (image) in
+                completion(image, artigo)
+            })
+        }
+    }
+    
+    func searchSports(api:News, completion: @escaping noticia){
+        guard var aux = api.topHeadLinesUrl else {return}
+        let apiKey = api.apiKey
+        let filterCountry = URLQueryItem(name: "country", value: api.country)
+        let category = "sports"
+        
+        let filterCategory = URLQueryItem(name: "category", value: category)
+        
+        aux.queryItems?.append(filterCountry)
+        aux.queryItems?.append(filterCategory)
+        aux.queryItems?.append(apiKey)
+        
+        
+        Alamofire.request(aux).responseJSON { (data) in
+            
+            let json = JSON(data.result.value!)
+            guard let dicionario = json.dictionaryObject else {return}
+            guard let artigos = dicionario["articles"] as? [[String: AnyObject]] else {return}
+            
+            let index = self.generateIndex(limite: artigos.count)
+            let artigo = artigos[index]
+            guard let stringUrlImagem = artigo["urlToImage"] as? String else {return}
+            guard let urlImagem = URL(string: stringUrlImagem) else {return}
             self.baixarImagem(url: urlImagem, completion: { (image) in
                 completion(image, artigo)
             })
@@ -80,10 +110,37 @@ class Functions {
     }
     
     
+    //Plexels
+    func getImages(api: Plexels, completion: @escaping (UIImage?, [String:AnyObject]) -> Void){
+        guard var url = api.url else {return}
+        let apiKey = api.apiKey
+        let per_page = 1
+        let page = Int.random(in: 1...1000)
+        
+        let filterPerPage = URLQueryItem(name: "per_page", value: String(per_page))
+        let filterPage = URLQueryItem(name: "page", value: String(page))
+        
+        url.queryItems?.append(filterPerPage)
+        url.queryItems?.append(filterPage)
+        
+        var request = URLRequest(url: url.url!)
+        request.addValue(apiKey, forHTTPHeaderField: "Authorization")
     
-    
-    
-    
-    
-    
+        Alamofire.request(request).responseJSON(completionHandler: { (data) in
+            let json = JSON(data.result.value!)
+            guard let dicionario = json.dictionaryObject else {return}
+            guard let photos = dicionario["photos"] as? [[String: AnyObject]] else {return}
+            guard let photo = photos[0] as? [String:AnyObject] else {return}
+            
+            
+            guard let source = photo["src"] as? [String:AnyObject] else {return}
+            guard let string = source ["portrait"] as? String else {return}
+            guard let urlImagem = URL(string: string) else {return}
+
+            self.baixarImagem(url: urlImagem, completion: { (imagem) in
+                completion(imagem, photo)
+            })
+        })
+    }
+  
 }

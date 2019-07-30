@@ -15,6 +15,8 @@ import SwiftyJSON
 class ViewController: UIViewController {
 
     @IBOutlet var popoverImagem: popoverImage!
+    @IBOutlet var popoverPlexels: popoverPlexels!
+    
     @IBOutlet var labelOutlet: popoverLabel!
     
     var canButton = false
@@ -36,44 +38,46 @@ class ViewController: UIViewController {
     
     @IBAction func generateButton(_ sender: UIButton) {
         
-
-        canButton = !canButton
-        if canButton{
-            popoverImagem.removeFromSuperview()
-            labelOutlet.removeFromSuperview()
-            let index = Int.random(in: 0...4)
-            switch index {
-            case 0:
-                getJokes()
-                self.view.backgroundColor = .init(red: 1, green: 0.8, blue: 0.05, alpha: 1)
-            case 1:
-                getCNFacts()
-                self.view.backgroundColor = .init(red: 0.8, green: 0.2, blue: 0.2, alpha: 1)
-            case 2:
-                getQuotes()
-                self.view.backgroundColor = .init(red: 0.5, green: 0.52, blue: 0.6, alpha: 1)
-            case 3:
-                conteudoNews()
-                self.view.backgroundColor = .init(red: 0, green: 0, blue: 0, alpha: 1)
-            case 4:
-                getInsults()
-                self.view.backgroundColor = .init(red: 1, green: 0.2, blue: 0.2, alpha: 1)
-            default:
-                getJokes()
-                self.view.backgroundColor = .init(red: 1, green: 0.8, blue: 0.05, alpha: 1)
-            }
-        }
+        self.getRandomImages()
+//
+//        canButton = !canButton
+//        if canButton{
+//            popoverImagem.removeFromSuperview()
+//            labelOutlet.removeFromSuperview()
+//            let index = Int.random(in: 0...4)
+//            switch index {
+//            case 0:
+//                getJokes()
+//                self.view.backgroundColor = .init(red: 1, green: 0.8, blue: 0.05, alpha: 1)
+//            case 1:
+//                getCNFacts()
+//                self.view.backgroundColor = .init(red: 0.8, green: 0.2, blue: 0.2, alpha: 1)
+//            case 2:
+//                getQuotes()
+//                self.view.backgroundColor = .init(red: 0.5, green: 0.52, blue: 0.6, alpha: 1)
+//            case 3:
+//                 newsPorPais()
+//                self.view.backgroundColor = .init(red: 0, green: 0, blue: 0, alpha: 1)
+//            case 4:
+//                getInsults()
+//                self.view.backgroundColor = .init(red: 1, green: 0.2, blue: 0.2, alpha: 1)
+//            case 5:
+//                self.newsSports()
+//            default:
+//                getJokes()
+//                self.view.backgroundColor = .init(red: 1, green: 0.8, blue: 0.05, alpha: 1)
+//            }
+//        }
 
         
     }
     
     
     
-    func conteudoNews(){
+    func newsPorPais(){
         let apiNews = News()
         apiNews.country = "br"
-        guard let apiTopHead = apiNews.topHeadLinesUrl else {return}
-        functions.searchTopHeadlines(topHeadLinesUrl: apiTopHead, pais: apiNews.country, apiKey: apiNews.apiKey) { (imagem, artigo) in
+        functions.searchTopHeadlines(api: apiNews, completion: { (imagem, artigo) in
             guard let content = artigo["description"] else {return}
             guard let title = artigo["title"] else {return}
             guard let urlDestino = artigo["url"] else {return}
@@ -85,8 +89,58 @@ class ViewController: UIViewController {
             self.popoverImagem.url = URL(string: urlDestino as! String)
             self.canButton = !self.canButton
 
-        }
+        })
         
+    }
+    
+    func newsSports(){
+        let api = News()
+        api.country = "br"
+        functions.searchSports(api: api, completion: { (imagem, artigo) in
+            print(artigo)
+            guard let content = artigo["content"] else {return}
+            guard let title = artigo["title"] else {return}
+            guard let urlDestino = artigo["url"] else {return}
+            self.popoverImagem.imagem.image = imagem
+            if let conteudo = content as? String {
+                self.popoverImagem.noticia.text =  conteudo
+            }else {
+                guard let description = artigo["description"] else {return}
+                if let descricao = description as? String {
+                    self.popoverImagem.noticia.text =  descricao
+                }else {
+                    self.popoverImagem.noticia.text =  ""
+                }
+            }
+            self.view.addSubview(self.popoverImagem)
+            self.popoverImagem.center = self.view.center
+            self.popoverImagem.tituloNoticia.text = (title as! String)
+            self.popoverImagem.url = URL(string: urlDestino as! String)
+            self.canButton = !self.canButton
+        })
+        
+    }
+    
+    func getRandomImages(){
+        let api = Plexels()
+        functions.getImages(api: api) { (imagem, photo) in
+            self.view.addSubview(self.popoverPlexels)
+            self.popoverPlexels.center = self.view.center
+            self.popoverPlexels.imagem.image = imagem
+            
+            var autor = String()
+            if let aut = photo["photographer"] as? String {
+                autor = aut
+            }else {
+                autor = "Desconhecido"
+            }
+            self.popoverPlexels.autor.text = autor
+            
+            let urlString = photo["photographer_url"] as! String
+            let urlAutor = URL(string: urlString)
+
+            self.popoverPlexels.urlAutor = urlAutor!
+        }
     }
     
 
