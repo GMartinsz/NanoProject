@@ -8,6 +8,7 @@
 
 import Alamofire
 import SwiftyJSON
+import CoreData
 
 enum typeTextObject {
     case simple
@@ -141,6 +142,49 @@ class Functions {
                 completion(imagem, photo)
             })
         })
+    }
+    
+    
+    
+    func downloadImage(url: URL, idImage: Int64, completion: @escaping (UIImage?) -> Void){
+        var imagem: UIImage?
+        
+        Alamofire.request(url, method: .get)
+            .responseData { response in
+            guard let imageData = response.result.value else {
+                return
+            }
+            imagem = UIImage(data: imageData)
+            self.saveImageCoreData(imagem: imagem!, idImage: idImage)
+            completion(imagem)
+            }
+            .downloadProgress { (progress) in
+                
+                print(progress.completedUnitCount)
+            }
+    }
+    
+    
+    func saveImageCoreData(imagem: UIImage, idImage: Int64){
+        
+        guard let imageData = imagem.jpegData(compressionQuality: 0.2) else {return}
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        let manageContext = appDelegate.persistentContainer.viewContext
+        guard let entity = NSEntityDescription.entity(forEntityName: "FavoriteImage", in: manageContext) else {return}
+        let image = NSManagedObject(entity: entity, insertInto: manageContext)
+        image.setValue(imageData, forKeyPath: "imageData")
+        image.setValue(idImage, forKey: "idImage")
+        
+        do {
+            try manageContext.save()
+            print("salvou")
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
     }
   
 }

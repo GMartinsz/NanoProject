@@ -13,15 +13,21 @@ import SwiftyJSON
 
 
 class ViewController: UIViewController {
-
-    @IBOutlet var imagePopover: UIImageView!
+    
+    
+    
     @IBOutlet var popoverImagem: popoverImage!
     @IBOutlet var popoverPlexels: popoverPlexels!
     
+    @IBOutlet var imagePopover: UIImageView!
+    @IBOutlet weak var buttonOutlet: UIButton!
     @IBOutlet var labelOutlet: popoverLabel!
     
     var canButton = false
     let functions = Functions()
+    var ultimoPopover = UIView()
+    var entrouFavPopover = false
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +36,6 @@ class ViewController: UIViewController {
         buttonOutlet.backgroundColor = .init(red: 0.9, green: 0.40, blue: 0.20, alpha: 1)
     }
 
-    
-    @IBOutlet weak var buttonOutlet: UIButton!
-    
     @IBAction func generateButton(_ sender: UIButton) {
         
         canButton = !canButton
@@ -87,9 +90,6 @@ class ViewController: UIViewController {
                 print("teste")
             }
         }
-
-
-        
     }
     
     
@@ -156,10 +156,18 @@ class ViewController: UIViewController {
             }
             self.popoverPlexels.autor.text = autor
             
-            let urlString = photo["photographer_url"] as! String
-            let urlAutor = URL(string: urlString)
-
-            self.popoverPlexels.urlAutor = urlAutor!
+            guard let urlString = photo["photographer_url"] as? String else {return}
+            guard let urlAutor = URL(string: urlString) else {return}
+            guard let src = photo["src"] as? [String:AnyObject] else {return}
+            guard let stringOriginal = src["portrait"] as? String else {return}
+            guard let urlOriginal = URL(string: stringOriginal) else {return}
+            guard let id = photo["id"] as? Int64 else {return}
+            
+            self.popoverPlexels.idImage = id
+            self.popoverPlexels.urlAutor = urlAutor
+            self.popoverPlexels.urlOriginal = urlOriginal
+            self.popoverPlexels.delegate = self
+            self.ultimoPopover = self.popoverPlexels
         }
     }
     
@@ -264,5 +272,30 @@ class ViewController: UIViewController {
     }
     
 
+}
+
+
+
+//Delegates
+
+extension ViewController: Like{
+    func liked() {
+        let alert = UIAlertController(title: "Favoritado", message: "Adicionado aos seus favoritos com sucesso!", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+}
+
+//Segues
+extension ViewController{
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueFav" {
+            if let destino  = segue.destination as? ViewControllerFavs{
+                self.popoverPlexels.delegate2 = destino as DownloadFinish
+            }
+        }
+    }
 }
 

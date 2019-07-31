@@ -21,6 +21,9 @@
 		ACE2F08D22EA3C0400C5A002 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACE2F08C22EA3C0400C5A002 /* Assets.xcassets */; };
 		ACE2F09022EA3C0400C5A002 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE2F08E22EA3C0400C5A002 /* LaunchScreen.storyboard */; };
 		ACE2F09C22EB932F00C5A002 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE2F09B22EB932F00C5A002 /* Quote.swift */; };
+		E64514FB22F1548F00596326 /* ViewControllerFavs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64514FA22F1548F00596326 /* ViewControllerFavs.swift */; };
+		E64514FD22F1572A00596326 /* CustomCellCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64514FC22F1572A00596326 /* CustomCellCollection.swift */; };
+		E64514FF22F16EB200596326 /* popoverImagemView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64514FE22F16EB200596326 /* popoverImagemView2.swift */; };
 		E6E2FF3A22EB8E2200DD9D7B /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E2FF3922EB8E2200DD9D7B /* News.swift */; };
 		E6F9DFFF22F0C55C007F1539 /* popoverPlexels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F9DFFE22F0C55C007F1539 /* popoverPlexels.swift */; };
 		E6F9E00122F0C71B007F1539 /* Plexels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F9E00022F0C71B007F1539 /* Plexels.swift */; };
@@ -46,6 +49,9 @@
 		ACE2F09122EA3C0400C5A002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ACE2F09B22EB932F00C5A002 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		C81EE0EFAA9075802EFD2810 /* Pods-NanoProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NanoProject.release.xcconfig"; path = "Target Support Files/Pods-NanoProject/Pods-NanoProject.release.xcconfig"; sourceTree = "<group>"; };
+		E64514FA22F1548F00596326 /* ViewControllerFavs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFavs.swift; sourceTree = "<group>"; };
+		E64514FC22F1572A00596326 /* CustomCellCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellCollection.swift; sourceTree = "<group>"; };
+		E64514FE22F16EB200596326 /* popoverImagemView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popoverImagemView2.swift; sourceTree = "<group>"; };
 		E6E2FF3922EB8E2200DD9D7B /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		E6F9DFFE22F0C55C007F1539 /* popoverPlexels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popoverPlexels.swift; sourceTree = "<group>"; };
 		E6F9E00022F0C71B007F1539 /* Plexels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plexels.swift; sourceTree = "<group>"; };
@@ -94,6 +100,7 @@
 			children = (
 				E6F9DFFE22F0C55C007F1539 /* popoverPlexels.swift */,
 				AC5239CF22EF763000E5F312 /* popoverLabel.swift */,
+				E64514FE22F16EB200596326 /* popoverImagemView2.swift */,
 				AC5239D222EF776B00E5F312 /* popoverImage.swift */,
 			);
 			path = Popovers;
@@ -145,6 +152,8 @@
 		ACE2F0A122EF646200C5A002 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E64514FA22F1548F00596326 /* ViewControllerFavs.swift */,
+				E64514FC22F1572A00596326 /* CustomCellCollection.swift */,
 				ACE2F08422EA3C0300C5A002 /* ViewController.swift */,
 			);
 			path = Controller;
@@ -293,11 +302,14 @@
 				E6F9E00122F0C71B007F1539 /* Plexels.swift in Sources */,
 				AC5239CE22EF705400E5F312 /* Functions.swift in Sources */,
 				ACE2F08322EA3C0300C5A002 /* AppDelegate.swift in Sources */,
+				E64514FF22F16EB200596326 /* popoverImagemView2.swift in Sources */,
+				E64514FB22F1548F00596326 /* ViewControllerFavs.swift in Sources */,
 				AC5239C622EF662900E5F312 /* Jokes.swift in Sources */,
 				E6E2FF3A22EB8E2200DD9D7B /* News.swift in Sources */,
 				ACE2F09C22EB932F00C5A002 /* Quote.swift in Sources */,
 				E6F9DFFF22F0C55C007F1539 /* popoverPlexels.swift in Sources */,
 				AC5239D022EF763000E5F312 /* popoverLabel.swift in Sources */,
+				E64514FD22F1572A00596326 /* CustomCellCollection.swift in Sources */,
 				ACE2F08B22EA3C0300C5A002 /* NanoProject.xcdatamodeld in Sources */,
 				E6F9E00322F0E856007F1539 /* CatFacts.swift in Sources */,
 				AC5239D322EF776B00E5F312 /* popoverImage.swift in Sources */,
@@ -448,7 +460,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RZFFC6K2FN;
+				DEVELOPMENT_TEAM = 9QWUCU29L9;
 				INFOPLIST_FILE = NanoProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -467,7 +479,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RZFFC6K2FN;
+				DEVELOPMENT_TEAM = 9QWUCU29L9;
 				INFOPLIST_FILE = NanoProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
