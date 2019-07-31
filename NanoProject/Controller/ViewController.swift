@@ -13,13 +13,21 @@ import SwiftyJSON
 
 
 class ViewController: UIViewController {
-
-    @IBOutlet var imagePopover: UIImageView!
+    
+    
+    
     @IBOutlet var popoverImagem: popoverImage!
+    @IBOutlet var popoverPlexels: popoverPlexels!
+    
+    @IBOutlet var imagePopover: UIImageView!
+    @IBOutlet weak var buttonOutlet: UIButton!
     @IBOutlet var labelOutlet: popoverLabel!
     
     var canButton = false
     let functions = Functions()
+    var ultimoPopover = UIView()
+    var entrouFavPopover = false
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,18 +36,14 @@ class ViewController: UIViewController {
         buttonOutlet.backgroundColor = .init(red: 0.9, green: 0.40, blue: 0.20, alpha: 1)
     }
 
-    
-    @IBOutlet weak var buttonOutlet: UIButton!
-    
     @IBAction func generateButton(_ sender: UIButton) {
         
-
         canButton = !canButton
         if canButton{
             imagePopover.removeFromSuperview()
             popoverImagem.removeFromSuperview()
             labelOutlet.removeFromSuperview()
-            let index = Int.random(in: 0...6)
+            let index = Int.random(in: 0...8)
             switch index {
             case 0:
                 getJokes()
@@ -57,7 +61,7 @@ class ViewController: UIViewController {
                 self.popoverImagem.backgroundColor = self.view.backgroundColor
                 self.labelOutlet.backgroundColor = self.view.backgroundColor
             case 3:
-                conteudoNews()
+                newsPorPais()
                 self.view.backgroundColor = .gray
                 self.popoverImagem.backgroundColor = self.view.backgroundColor
                 self.labelOutlet.backgroundColor = self.view.backgroundColor
@@ -76,21 +80,24 @@ class ViewController: UIViewController {
                 self.view.backgroundColor = .init(red: 0, green: 0.8, blue: 0.2, alpha: 1)
                 self.popoverImagem.backgroundColor = self.view.backgroundColor
                 self.labelOutlet.backgroundColor = self.view.backgroundColor
+            case 7:
+                getRandomImages()
+                //Mudar background
+            case 8:
+                newsSports()
+                //Mudar background
             default:
                 print("teste")
             }
         }
-
-        
     }
     
     
     
-    func conteudoNews(){
+    func newsPorPais(){
         let apiNews = News()
         apiNews.country = "br"
-        guard let apiTopHead = apiNews.topHeadLinesUrl else {return}
-        functions.searchTopHeadlines(topHeadLinesUrl: apiTopHead, pais: apiNews.country, apiKey: apiNews.apiKey) { (imagem, artigo) in
+        functions.searchTopHeadlines(api: apiNews, completion: { (imagem, artigo) in
             guard let content = artigo["description"] else {return}
             guard let title = artigo["title"] else {return}
             guard let urlDestino = artigo["url"] else {return}
@@ -102,8 +109,66 @@ class ViewController: UIViewController {
             self.popoverImagem.url = URL(string: urlDestino as! String)
             self.canButton = !self.canButton
 
-        }
+        })
         
+    }
+    
+    func newsSports(){
+        let api = News()
+        api.country = "br"
+        functions.searchSports(api: api, completion: { (imagem, artigo) in
+            print(artigo)
+            guard let content = artigo["content"] else {return}
+            guard let title = artigo["title"] else {return}
+            guard let urlDestino = artigo["url"] else {return}
+            self.popoverImagem.imagem.image = imagem
+            if let conteudo = content as? String {
+                self.popoverImagem.noticia.text =  conteudo
+            }else {
+                guard let description = artigo["description"] else {return}
+                if let descricao = description as? String {
+                    self.popoverImagem.noticia.text =  descricao
+                }else {
+                    self.popoverImagem.noticia.text =  ""
+                }
+            }
+            self.view.addSubview(self.popoverImagem)
+            self.popoverImagem.center = self.view.center
+            self.popoverImagem.tituloNoticia.text = (title as! String)
+            self.popoverImagem.url = URL(string: urlDestino as! String)
+            self.canButton = !self.canButton
+        })
+        
+    }
+    
+    func getRandomImages(){
+        let api = Plexels()
+        functions.getImages(api: api) { (imagem, photo) in
+            self.view.addSubview(self.popoverPlexels)
+            self.popoverPlexels.center = self.view.center
+            self.popoverPlexels.imagem.image = imagem
+            
+            var autor = String()
+            if let aut = photo["photographer"] as? String {
+                autor = aut
+            }else {
+                autor = "Desconhecido"
+            }
+            self.popoverPlexels.autor.text = autor
+            
+            guard let urlString = photo["photographer_url"] as? String else {return}
+            guard let urlAutor = URL(string: urlString) else {return}
+            guard let src = photo["src"] as? [String:AnyObject] else {return}
+            guard let stringOriginal = src["portrait"] as? String else {return}
+            guard let urlOriginal = URL(string: stringOriginal) else {return}
+            guard let id = photo["id"] as? Int64 else {return}
+            
+            self.popoverPlexels.idImage = id
+            self.popoverPlexels.urlAutor = urlAutor
+            self.popoverPlexels.urlOriginal = urlOriginal
+            self.popoverPlexels.delegate = self
+            self.ultimoPopover = self.popoverPlexels
+        }
     }
     
 
@@ -207,5 +272,30 @@ class ViewController: UIViewController {
     }
     
 
+}
+
+
+
+//Delegates
+
+extension ViewController: Like{
+    func liked() {
+        let alert = UIAlertController(title: "Favoritado", message: "Adicionado aos seus favoritos com sucesso!", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+}
+
+//Segues
+extension ViewController{
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueFav" {
+            if let destino  = segue.destination as? ViewControllerFavs{
+                self.popoverPlexels.delegate2 = destino as DownloadFinish
+            }
+        }
+    }
 }
 
