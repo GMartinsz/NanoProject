@@ -49,7 +49,7 @@ class ViewController: UIViewController {
             popoverImagem.removeFromSuperview()
             labelOutlet.removeFromSuperview()
             popoverPlexels.removeFromSuperview()
-            let index = Int.random(in: 0...8)
+            let index = Int.random(in: 0...9)
             switch index {
             case 0:
                 getJokes()
@@ -92,6 +92,8 @@ class ViewController: UIViewController {
             case 8:
                 newsSports()
                 //Mudar background
+            case 9:
+                getGifs()
             default:
                 print("teste")
             }
@@ -250,6 +252,20 @@ class ViewController: UIViewController {
                 self.canButton = !self.canButton
                 self.loadingOutlet.stopAnimating()
             })
+        }
+    }
+    
+    func getGifs(){
+        Alamofire.request("https://api.giphy.com/v1/gifs/random?&api_key=UgDD2ElfL0K0kCJHIUuG5k6PDsRZldqM&rating=g&tag=funny").responseData { (responseData) in
+            let value = JSON(responseData.result.value!).dictionaryObject
+            let array = value!["data"] as! [String: AnyObject]
+            let url = array["image_url"] as! String
+            let image = UIImage.gifImageWithURL(url)
+            self.imagePopover.image = image
+            self.view.addSubview(self.imagePopover)
+            self.imageOutletAutoLayout()
+            self.canButton = !self.canButton
+            self.loadingOutlet.stopAnimating()
         }
     }
     

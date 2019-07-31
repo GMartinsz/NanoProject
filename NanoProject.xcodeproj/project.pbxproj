@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A11154529E46D577250AB319 /* Pods_NanoProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459A853375E5CF8D6E4406F1 /* Pods_NanoProject.framework */; };
+		A4B65F9922F21D43004D69DB /* gifFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B65F9822F21D43004D69DB /* gifFunctions.swift */; };
 		AC5239C622EF662900E5F312 /* Jokes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5239C522EF662900E5F312 /* Jokes.swift */; };
 		AC5239C822EF664B00E5F312 /* FactsCN.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5239C722EF664B00E5F312 /* FactsCN.swift */; };
 		AC5239CE22EF705400E5F312 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5239CD22EF705400E5F312 /* Functions.swift */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		072E30A18069334E668D9344 /* Pods-NanoProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NanoProject.debug.xcconfig"; path = "Target Support Files/Pods-NanoProject/Pods-NanoProject.debug.xcconfig"; sourceTree = "<group>"; };
 		459A853375E5CF8D6E4406F1 /* Pods_NanoProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NanoProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4B65F9822F21D43004D69DB /* gifFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gifFunctions.swift; sourceTree = "<group>"; };
 		AC5239C522EF662900E5F312 /* Jokes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jokes.swift; sourceTree = "<group>"; };
 		AC5239C722EF664B00E5F312 /* FactsCN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsCN.swift; sourceTree = "<group>"; };
 		AC5239CD22EF705400E5F312 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				AC5239CD22EF705400E5F312 /* Functions.swift */,
+				A4B65F9822F21D43004D69DB /* gifFunctions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				E64514FB22F1548F00596326 /* ViewControllerFavs.swift in Sources */,
 				AC5239C622EF662900E5F312 /* Jokes.swift in Sources */,
 				E6E2FF3A22EB8E2200DD9D7B /* News.swift in Sources */,
+				A4B65F9922F21D43004D69DB /* gifFunctions.swift in Sources */,
 				ACE2F09C22EB932F00C5A002 /* Quote.swift in Sources */,
 				E6F9DFFF22F0C55C007F1539 /* popoverPlexels.swift in Sources */,
 				AC5239D022EF763000E5F312 /* popoverLabel.swift in Sources */,
