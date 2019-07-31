@@ -49,7 +49,7 @@ class ViewController: UIViewController {
             popoverImagem.removeFromSuperview()
             labelOutlet.removeFromSuperview()
             popoverPlexels.removeFromSuperview()
-            let index = Int.random(in: 0...9)
+            let index = Int.random(in: 0...11)
             switch index {
             case 0:
                 getJokes()
@@ -94,6 +94,10 @@ class ViewController: UIViewController {
                 //Mudar background
             case 9:
                 getGifs()
+            case 10:
+                getMovie()
+            case 11:
+                getTVShow()
             default:
                 print("teste")
             }
@@ -267,6 +271,43 @@ class ViewController: UIViewController {
             self.canButton = !self.canButton
             self.loadingOutlet.stopAnimating()
         }
+    }
+    
+    func getShow(type: String, titleKey: String) {
+        let page = Int.random(in: 1...10)
+        Alamofire.request("https://api.themoviedb.org/3/discover/" + type + "?api_key=0a5245c38a864d2cc499008bcd045b6f&language=pt-BR&page=\(page)").responseData { (responseData) in
+            var array: [[String: String]] = []
+            let data = JSON(responseData.result.value!).dictionaryObject
+            let movies = data!["results"] as! [[String: AnyObject]]
+            for movie in movies {
+                if movie["original_language"]! as! String != "ja", movie["overview"]! as! String != ""{
+                    var dict = [String: String]()
+                    dict["title"] = movie[titleKey] as? String
+                    dict["urlImage"] = movie["poster_path"] as? String
+                    dict["descricao"] = movie["overview"] as? String
+                    array.append(dict)
+                }
+            }
+            let randomMovieIndex = Int.random(in: 0...array.count - 1)
+            let chosenMovie = array[randomMovieIndex]
+            self.functions.baixarImagem(url: URL(string: "https://image.tmdb.org/t/p/w500/" + chosenMovie["urlImage"]!)!, completion: { (imagem) in
+                self.popoverImagem.imagem.image = imagem
+                self.popoverImagem.noticia.text = chosenMovie["descricao"]
+                self.view.addSubview(self.popoverImagem)
+                self.newsOutletAutoLayout()
+                self.popoverImagem.tituloNoticia.text = chosenMovie["title"]
+                self.canButton = !self.canButton
+                self.loadingOutlet.stopAnimating()
+            })
+        }
+    }
+    
+    func getMovie(){
+        getShow(type: "movie", titleKey: "title")
+    }
+    
+    func getTVShow(){
+        getShow(type: "tv", titleKey: "name")
     }
     
     func labelOutletAutoLayout() {
