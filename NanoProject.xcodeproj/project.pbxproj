@@ -26,6 +26,7 @@
 		E64514FF22F16EB200596326 /* popoverImagem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64514FE22F16EB200596326 /* popoverImagem.swift */; };
 		E6D295CB22F2126900EA7375 /* PopoverImagemView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D295CA22F2126900EA7375 /* PopoverImagemView2.swift */; };
 		E6D295CD22F2291900EA7375 /* CustomSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D295CC22F2291900EA7375 /* CustomSection.swift */; };
+		E6D295CF22F239DB00EA7375 /* gifFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D295CE22F239DB00EA7375 /* gifFunctions.swift */; };
 		E6E2FF3A22EB8E2200DD9D7B /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E2FF3922EB8E2200DD9D7B /* News.swift */; };
 		E6F9DFFF22F0C55C007F1539 /* popoverPlexels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F9DFFE22F0C55C007F1539 /* popoverPlexels.swift */; };
 		E6F9E00122F0C71B007F1539 /* Plexels.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F9E00022F0C71B007F1539 /* Plexels.swift */; };
@@ -56,6 +57,7 @@
 		E64514FE22F16EB200596326 /* popoverImagem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popoverImagem.swift; sourceTree = "<group>"; };
 		E6D295CA22F2126900EA7375 /* PopoverImagemView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverImagemView2.swift; sourceTree = "<group>"; };
 		E6D295CC22F2291900EA7375 /* CustomSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSection.swift; sourceTree = "<group>"; };
+		E6D295CE22F239DB00EA7375 /* gifFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gifFunctions.swift; sourceTree = "<group>"; };
 		E6E2FF3922EB8E2200DD9D7B /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		E6F9DFFE22F0C55C007F1539 /* popoverPlexels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popoverPlexels.swift; sourceTree = "<group>"; };
 		E6F9E00022F0C71B007F1539 /* Plexels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plexels.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 		AC5239CC22EF6F3100E5F312 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E6D295CE22F239DB00EA7375 /* gifFunctions.swift */,
 				AC5239CD22EF705400E5F312 /* Functions.swift */,
 			);
 			path = Utils;
@@ -310,6 +313,7 @@
 				AC5239CE22EF705400E5F312 /* Functions.swift in Sources */,
 				ACE2F08322EA3C0300C5A002 /* AppDelegate.swift in Sources */,
 				E64514FF22F16EB200596326 /* popoverImagem.swift in Sources */,
+				E6D295CF22F239DB00EA7375 /* gifFunctions.swift in Sources */,
 				E64514FB22F1548F00596326 /* ViewControllerFavs.swift in Sources */,
 				AC5239C622EF662900E5F312 /* Jokes.swift in Sources */,
 				E6E2FF3A22EB8E2200DD9D7B /* News.swift in Sources */,

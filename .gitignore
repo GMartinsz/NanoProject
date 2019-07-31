@@ -2,5 +2,4 @@ NanoProject.xcodeproj/
 /Pods
 NanoProject.xcworkspace/xcuserdata/
 .DS_Store
-NanoProject.xcodeproj/project.pbxproj
 Podfile.lock
