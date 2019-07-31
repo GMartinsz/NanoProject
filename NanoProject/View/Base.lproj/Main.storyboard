@@ -133,7 +133,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
             </objects>
-            <point key="canvasLocation" x="28.985507246376812" y="75.669642857142847"/>
+            <point key="canvasLocation" x="0.0" y="72"/>
         </scene>
     </scenes>
 </document>
