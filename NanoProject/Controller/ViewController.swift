@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     
     
     
+    @IBOutlet weak var loadingOutlet: UIActivityIndicatorView!
     @IBOutlet var popoverImagem: popoverImage!
     @IBOutlet var popoverPlexels: popoverPlexels!
     
@@ -31,18 +32,23 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        buttonOutlet.layer.cornerRadius = 30
+        buttonOutlet.layer.cornerRadius = 25
         buttonOutlet.layer.borderWidth = 1
+        buttonOutlet.titleLabel?.adjustsFontSizeToFitWidth = true
+        buttonOutlet.titleLabel?.minimumScaleFactor = 0.5
         buttonOutlet.backgroundColor = .init(red: 0.9, green: 0.40, blue: 0.20, alpha: 1)
+        loadingOutlet.stopAnimating()
     }
 
     @IBAction func generateButton(_ sender: UIButton) {
         
         canButton = !canButton
         if canButton{
+            loadingOutlet.startAnimating()
             imagePopover.removeFromSuperview()
             popoverImagem.removeFromSuperview()
             labelOutlet.removeFromSuperview()
+            popoverPlexels.removeFromSuperview()
             let index = Int.random(in: 0...8)
             switch index {
             case 0:
@@ -108,7 +114,7 @@ class ViewController: UIViewController {
             self.popoverImagem.tituloNoticia.text = (title as! String)
             self.popoverImagem.url = URL(string: urlDestino as! String)
             self.canButton = !self.canButton
-
+            self.loadingOutlet.stopAnimating()
         })
         
     }
@@ -133,10 +139,11 @@ class ViewController: UIViewController {
                 }
             }
             self.view.addSubview(self.popoverImagem)
-            self.popoverImagem.center = self.view.center
+            self.newsOutletAutoLayout()
             self.popoverImagem.tituloNoticia.text = (title as! String)
             self.popoverImagem.url = URL(string: urlDestino as! String)
             self.canButton = !self.canButton
+            self.loadingOutlet.stopAnimating()
         })
         
     }
@@ -145,7 +152,7 @@ class ViewController: UIViewController {
         let api = Plexels()
         functions.getImages(api: api) { (imagem, photo) in
             self.view.addSubview(self.popoverPlexels)
-            self.popoverPlexels.center = self.view.center
+            self.plexelsOutletAutoLayout()
             self.popoverPlexels.imagem.image = imagem
             
             var autor = String()
@@ -168,6 +175,8 @@ class ViewController: UIViewController {
             self.popoverPlexels.urlOriginal = urlOriginal
             self.popoverPlexels.delegate = self
             self.ultimoPopover = self.popoverPlexels
+            self.canButton = !self.canButton
+            self.loadingOutlet.stopAnimating()
         }
     }
     
@@ -180,6 +189,7 @@ class ViewController: UIViewController {
             self.view.addSubview(self.labelOutlet)
             self.labelOutletAutoLayout()
             self.canButton = !self.canButton
+            self.loadingOutlet.stopAnimating()
         }
     }
     
@@ -190,6 +200,7 @@ class ViewController: UIViewController {
             self.view.addSubview(self.labelOutlet)
             self.labelOutletAutoLayout()
             self.canButton = !self.canButton
+            self.loadingOutlet.stopAnimating()
         }
     }
  
@@ -201,6 +212,7 @@ class ViewController: UIViewController {
             self.view.addSubview(self.labelOutlet)
             self.labelOutletAutoLayout()
             self.canButton = !self.canButton
+            self.loadingOutlet.stopAnimating()
         }
     }
     
@@ -211,6 +223,7 @@ class ViewController: UIViewController {
             self.view.addSubview(self.labelOutlet)
             self.labelOutletAutoLayout()
             self.canButton = !self.canButton
+            self.loadingOutlet.stopAnimating()
         }
     }
     
@@ -221,6 +234,7 @@ class ViewController: UIViewController {
             self.view.addSubview(self.labelOutlet)
             self.labelOutletAutoLayout()
             self.canButton = !self.canButton
+            self.loadingOutlet.stopAnimating()
         }
     }
     
@@ -234,6 +248,7 @@ class ViewController: UIViewController {
                 self.view.addSubview(self.imagePopover)
                 self.imageOutletAutoLayout()
                 self.canButton = !self.canButton
+                self.loadingOutlet.stopAnimating()
             })
         }
     }
@@ -269,6 +284,17 @@ class ViewController: UIViewController {
         NSLayoutConstraint(item: self.popoverImagem!, attribute: .height, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute:.height, multiplier: 0.70, constant:0.0).isActive = true
         
         NSLayoutConstraint(item: self.popoverImagem!, attribute: .width, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute:.width, multiplier: 0.8, constant:0.0).isActive = true
+    }
+    
+    func plexelsOutletAutoLayout() {
+        self.popoverPlexels.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(item: self.popoverPlexels!, attribute: .centerX, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
+        
+        NSLayoutConstraint(item: self.popoverPlexels!, attribute: .centerY, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .centerY, multiplier: 1.0, constant: 0.0).isActive = true
+        
+        NSLayoutConstraint(item: self.popoverPlexels!, attribute: .height, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute:.height, multiplier: 0.70, constant:0.0).isActive = true
+        
+        NSLayoutConstraint(item: self.popoverPlexels!, attribute: .width, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute:.width, multiplier: 0.8, constant:0.0).isActive = true
     }
     
 
