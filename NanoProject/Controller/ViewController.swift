@@ -12,14 +12,19 @@ import Alamofire
 import SwiftyJSON
 
 
+protocol Like:class {
+    func liked()
+}
+
+
+
 class ViewController: UIViewController {
     
     
-    
-    @IBOutlet var popoverImagem: popoverImage!
+    //Popovers
+    @IBOutlet var popoverNoticias: popoverNoticias!
     @IBOutlet var popoverPlexels: popoverPlexels!
-    
-    @IBOutlet var imagePopover: UIImageView!
+    @IBOutlet var popoverImagens: popoverImagem!
     @IBOutlet weak var buttonOutlet: UIButton!
     @IBOutlet var labelOutlet: popoverLabel!
     
@@ -31,6 +36,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        labelOutlet.delegate = self
+        popoverImagens.delegate = self
+        popoverNoticias.delegate = self
+        popoverPlexels.delegate = self
         buttonOutlet.layer.cornerRadius = 30
         buttonOutlet.layer.borderWidth = 1
         buttonOutlet.backgroundColor = .init(red: 0.9, green: 0.40, blue: 0.20, alpha: 1)
@@ -38,58 +47,53 @@ class ViewController: UIViewController {
 
     @IBAction func generateButton(_ sender: UIButton) {
         
-        canButton = !canButton
-        if canButton{
-            imagePopover.removeFromSuperview()
-            popoverImagem.removeFromSuperview()
-            labelOutlet.removeFromSuperview()
-            let index = Int.random(in: 0...8)
-            switch index {
-            case 0:
-                getJokes()
-                self.view.backgroundColor = .init(red: 1, green: 0.8, blue: 0.05, alpha: 1)
-                self.popoverImagem.backgroundColor = self.view.backgroundColor
-                self.labelOutlet.backgroundColor = self.view.backgroundColor
-            case 1:
-                getCNFacts()
-                self.view.backgroundColor = .init(red: 0.8, green: 0.2, blue: 0.2, alpha: 1)
-                self.popoverImagem.backgroundColor = self.view.backgroundColor
-                self.labelOutlet.backgroundColor = self.view.backgroundColor
-            case 2:
-                getQuotes()
-                self.view.backgroundColor = .init(red: 0.5, green: 0.52, blue: 0.6, alpha: 1)
-                self.popoverImagem.backgroundColor = self.view.backgroundColor
-                self.labelOutlet.backgroundColor = self.view.backgroundColor
-            case 3:
-                newsPorPais()
-                self.view.backgroundColor = .gray
-                self.popoverImagem.backgroundColor = self.view.backgroundColor
-                self.labelOutlet.backgroundColor = self.view.backgroundColor
-            case 4:
-                getInsults()
-                self.view.backgroundColor = .init(red: 1, green: 0.2, blue: 0.2, alpha: 1)
-                self.popoverImagem.backgroundColor = self.view.backgroundColor
-                self.labelOutlet.backgroundColor = self.view.backgroundColor
-            case 5:
-                getCatFacts()
-                self.view.backgroundColor = .init(red: 1, green: 0.8, blue: 0.05, alpha: 1)
-                self.popoverImagem.backgroundColor = self.view.backgroundColor
-                self.labelOutlet.backgroundColor = self.view.backgroundColor
-            case 6:
-                getMemes()
-                self.view.backgroundColor = .init(red: 0, green: 0.8, blue: 0.2, alpha: 1)
-                self.popoverImagem.backgroundColor = self.view.backgroundColor
-                self.labelOutlet.backgroundColor = self.view.backgroundColor
-            case 7:
-                getRandomImages()
-                //Mudar background
-            case 8:
-                newsSports()
-                //Mudar background
-            default:
-                print("teste")
-            }
-        }
+        newsPorPais()
+        
+//        canButton = !canButton
+//        if canButton{
+//            popoverPlexels.removeFromSuperview()
+//            popoverNoticias.removeFromSuperview()
+//            popoverImagens.removeFromSuperview()
+//            labelOutlet.removeFromSuperview()
+//            let index = Int.random(in: 0...8)
+//            switch index {
+//            case 0:
+//                getJokes()
+//                self.view.backgroundColor = .init(red: 1, green: 0.8, blue: 0.05, alpha: 1)
+//                self.popoverImagens.backgroundColor = self.view.backgroundColor
+//            case 1:
+//                getCNFacts()
+//                self.view.backgroundColor = .init(red: 0.8, green: 0.2, blue: 0.2, alpha: 1)
+//                self.labelOutlet.backgroundColor = self.view.backgroundColor
+//            case 2:
+//                getQuotes()
+//                self.view.backgroundColor = .init(red: 0.5, green: 0.52, blue: 0.6, alpha: 1)
+//                self.labelOutlet.backgroundColor = self.view.backgroundColor
+//            case 3:
+//                newsPorPais()
+//                self.view.backgroundColor = .gray
+//            case 4:
+//                getInsults()
+//                self.view.backgroundColor = .init(red: 1, green: 0.2, blue: 0.2, alpha: 1)
+//                self.labelOutlet.backgroundColor = self.view.backgroundColor
+//            case 5:
+//                getCatFacts()
+//                self.view.backgroundColor = .init(red: 1, green: 0.8, blue: 0.05, alpha: 1)
+//                self.labelOutlet.backgroundColor = self.view.backgroundColor
+//            case 6:
+//                getMemes()
+//                self.view.backgroundColor = .init(red: 0, green: 0.8, blue: 0.2, alpha: 1)
+//                self.popoverImagens.backgroundColor = self.view.backgroundColor
+//            case 7:
+//                getRandomImages()
+//                //Mudar background
+//            case 8:
+//                newsSports()
+//                //Mudar background
+//            default:
+//                print("teste")
+//            }
+//        }
     }
     
     
@@ -101,12 +105,21 @@ class ViewController: UIViewController {
             guard let content = artigo["description"] else {return}
             guard let title = artigo["title"] else {return}
             guard let urlDestino = artigo["url"] else {return}
-            self.popoverImagem.imagem.image = imagem
-            self.popoverImagem.noticia.text =  (content as! String)
-            self.view.addSubview(self.popoverImagem)
+            guard let source = artigo["source"] as? [String: AnyObject] else {return}
+            var fontName = String()
+            if let nameSource = source["name"] as? String {
+                fontName = nameSource
+            }else if let idSource = source["id"] as? String {
+                fontName = idSource
+            }
+            self.popoverNoticias.autorNoticia = fontName
+            self.popoverNoticias.imagem.image = imagem
+            self.popoverNoticias.noticia.text =  (content as! String)
+            self.view.addSubview(self.popoverNoticias)
+            self.popoverNoticias.center = self.view.center
             self.newsOutletAutoLayout()
-            self.popoverImagem.tituloNoticia.text = (title as! String)
-            self.popoverImagem.url = URL(string: urlDestino as! String)
+            self.popoverNoticias.tituloNoticia.text = (title as! String)
+            self.popoverNoticias.url = URL(string: urlDestino as! String)
             self.canButton = !self.canButton
 
         })
@@ -121,21 +134,29 @@ class ViewController: UIViewController {
             guard let content = artigo["content"] else {return}
             guard let title = artigo["title"] else {return}
             guard let urlDestino = artigo["url"] else {return}
-            self.popoverImagem.imagem.image = imagem
+            guard let source = artigo["source"] as? [String: AnyObject] else {return}
+            var fontName = String()
+            if let nameSource = source["name"] as? String {
+                fontName = nameSource
+            }else if let idSource = source["id"] as? String {
+                fontName = idSource
+            }
+            self.popoverNoticias.autorNoticia = fontName
+            self.popoverNoticias.imagem.image = imagem
             if let conteudo = content as? String {
-                self.popoverImagem.noticia.text =  conteudo
+                self.popoverNoticias.noticia.text =  conteudo
             }else {
                 guard let description = artigo["description"] else {return}
                 if let descricao = description as? String {
-                    self.popoverImagem.noticia.text =  descricao
+                    self.popoverNoticias.noticia.text =  descricao
                 }else {
-                    self.popoverImagem.noticia.text =  ""
+                    self.popoverNoticias.noticia.text =  ""
                 }
             }
-            self.view.addSubview(self.popoverImagem)
-            self.popoverImagem.center = self.view.center
-            self.popoverImagem.tituloNoticia.text = (title as! String)
-            self.popoverImagem.url = URL(string: urlDestino as! String)
+            self.view.addSubview(self.popoverNoticias)
+            self.popoverNoticias.center = self.view.center
+            self.popoverNoticias.tituloNoticia.text = (title as! String)
+            self.popoverNoticias.url = URL(string: urlDestino as! String)
             self.canButton = !self.canButton
         })
         
@@ -166,7 +187,6 @@ class ViewController: UIViewController {
             self.popoverPlexels.idImage = id
             self.popoverPlexels.urlAutor = urlAutor
             self.popoverPlexels.urlOriginal = urlOriginal
-            self.popoverPlexels.delegate = self
             self.ultimoPopover = self.popoverPlexels
         }
     }
@@ -177,6 +197,7 @@ class ViewController: UIViewController {
         let jokes = Jokes()
         functions.getText(type: .simple, from: jokes.url, key: jokes.key) { (value) in
             self.labelOutlet.textLabel.text = value
+            self.labelOutlet.entidade = "JokesData"
             self.view.addSubview(self.labelOutlet)
             self.labelOutletAutoLayout()
             self.canButton = !self.canButton
@@ -187,6 +208,7 @@ class ViewController: UIViewController {
         let facts = FactsCN()
         functions.getText(type: .simple, from: facts.url, key: facts.key) { (value) in
             self.labelOutlet.textLabel.text = value
+            self.labelOutlet.entidade = "FactsCNData"
             self.view.addSubview(self.labelOutlet)
             self.labelOutletAutoLayout()
             self.canButton = !self.canButton
@@ -198,6 +220,7 @@ class ViewController: UIViewController {
         let quotes = Quote()
         functions.getText(type: .quotes, from: quotes.url, key: quotes.key) { (value) in
             self.labelOutlet.textLabel.text = value
+            self.labelOutlet.entidade = "QuoteData"
             self.view.addSubview(self.labelOutlet)
             self.labelOutletAutoLayout()
             self.canButton = !self.canButton
@@ -208,6 +231,7 @@ class ViewController: UIViewController {
         let insults = Insults()
         functions.getText(type: .simple, from: insults.url, key: insults.key) { (value) in
             self.labelOutlet.textLabel.text = value
+            self.labelOutlet.entidade = "InsultoData"
             self.view.addSubview(self.labelOutlet)
             self.labelOutletAutoLayout()
             self.canButton = !self.canButton
@@ -218,6 +242,7 @@ class ViewController: UIViewController {
         let catFacts = CatFacts()
         functions.getText(type: .simple, from: catFacts.url, key: catFacts.key) { (value) in
             self.labelOutlet.textLabel.text = value
+            self.labelOutlet.entidade = "CatFactsData"
             self.view.addSubview(self.labelOutlet)
             self.labelOutletAutoLayout()
             self.canButton = !self.canButton
@@ -230,8 +255,8 @@ class ViewController: UIViewController {
             let dataDO = data.dictionaryObject
             let url = dataDO!["url"] as! String
             self.functions.baixarImagem(url: URL(string: url)!, completion: { (imagem) in
-                self.imagePopover.image = imagem
-                self.view.addSubview(self.imagePopover)
+                self.popoverImagens.imagem.image = imagem
+                self.view.addSubview(self.popoverImagens)
                 self.imageOutletAutoLayout()
                 self.canButton = !self.canButton
             })
@@ -250,25 +275,25 @@ class ViewController: UIViewController {
     }
     
     func imageOutletAutoLayout() {
-        self.imagePopover.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint(item: self.imagePopover!, attribute: .centerX, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
+        self.popoverImagens.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(item: self.popoverImagens!, attribute: .centerX, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
         
-        NSLayoutConstraint(item: self.imagePopover!, attribute: .centerY, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .centerY, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: self.popoverImagens!, attribute: .centerY, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .centerY, multiplier: 1.0, constant: 0.0).isActive = true
         
-        NSLayoutConstraint(item: self.imagePopover!, attribute: .height, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute:.height, multiplier: 0.70, constant:0.0).isActive = true
+        NSLayoutConstraint(item: self.popoverImagens!, attribute: .height, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute:.height, multiplier: 0.70, constant:0.0).isActive = true
         
-        NSLayoutConstraint(item: self.imagePopover!, attribute: .width, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute:.width, multiplier: 0.8, constant:0.0).isActive = true
+        NSLayoutConstraint(item: self.popoverImagens!, attribute: .width, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute:.width, multiplier: 0.8, constant:0.0).isActive = true
     }
     
     func newsOutletAutoLayout() {
-        self.popoverImagem.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint(item: self.popoverImagem!, attribute: .centerX, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
+        self.popoverNoticias.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(item: self.popoverNoticias!, attribute: .centerX, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .centerX, multiplier: 1.0, constant: 0.0).isActive = true
         
-        NSLayoutConstraint(item: self.popoverImagem!, attribute: .centerY, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .centerY, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: self.popoverNoticias!, attribute: .centerY, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute: .centerY, multiplier: 1.0, constant: 0.0).isActive = true
         
-        NSLayoutConstraint(item: self.popoverImagem!, attribute: .height, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute:.height, multiplier: 0.70, constant:0.0).isActive = true
+        NSLayoutConstraint(item: self.popoverNoticias!, attribute: .height, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute:.height, multiplier: 0.70, constant:0.0).isActive = true
         
-        NSLayoutConstraint(item: self.popoverImagem!, attribute: .width, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute:.width, multiplier: 0.8, constant:0.0).isActive = true
+        NSLayoutConstraint(item: self.popoverNoticias!, attribute: .width, relatedBy: .equal, toItem: self.view.safeAreaLayoutGuide, attribute:.width, multiplier: 0.8, constant:0.0).isActive = true
     }
     
 
@@ -286,16 +311,5 @@ extension ViewController: Like{
     }
     
     
-}
-
-//Segues
-extension ViewController{
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueFav" {
-            if let destino  = segue.destination as? ViewControllerFavs{
-                self.popoverPlexels.delegate2 = destino as DownloadFinish
-            }
-        }
-    }
 }
 

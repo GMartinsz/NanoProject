@@ -9,15 +9,6 @@
 import Foundation
 import UIKit
 
-
-protocol Like:class {
-    func liked()
-}
-
-protocol DownloadFinish: class {
-    func finish()
-}
-
 class popoverPlexels: UIView {
     
     var urlAutor: URL?
@@ -28,7 +19,6 @@ class popoverPlexels: UIView {
     @IBOutlet weak var imagem: UIImageView!
     @IBOutlet weak var autor: UILabel!
     weak var delegate: Like?
-    weak var delegate2: DownloadFinish?
   
     
     @IBAction func visitarAutor(_ sender: Any) {
@@ -37,9 +27,7 @@ class popoverPlexels: UIView {
     
     @IBAction func baixarImagem(_ sender: Any) {
         self.delegate?.liked()
-        function.downloadImage(url: urlOriginal!, idImage: idImage) { (imagem) in
-            self.delegate2?.finish()
-        }
+        function.saveImageCoreData(imagem: imagem.image!, idImage: idImage, entidade: "FavoriteImage", autor: autor.text!)
     }
     
 }

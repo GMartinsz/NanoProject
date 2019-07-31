@@ -1,5 +1,5 @@
 //
-//  popoverImagemView2.swift
+//  PopoverImagemView2.swift
 //  NanoProject
 //
 //  Created by Daniel Leal on 31/07/19.
@@ -9,8 +9,7 @@
 import Foundation
 import UIKit
 
-class popoverImagemView2: UIView {
+class PopoverImagemView2: UIView {
     
-    @IBOutlet weak var imagem: UIImageView!
-    
+    @IBOutlet weak var imagemView: UIImageView!
 }

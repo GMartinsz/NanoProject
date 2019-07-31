@@ -11,15 +11,17 @@ import UIKit
 class popoverLabel : UIView {
     
     @IBOutlet weak var textLabel: UILabel!
-    let screenSize = UIScreen.main.bounds.size
+    var entidade = String()
+    weak var delegate: Like?
+    let functions = Functions()
     
-    
-    
-    
-    
-    
-    
-    
-    
+
+    @IBAction func curtir(_ sender: Any) {
+        
+        var ultimoId = functions.buscarUltimoIdCoreData(entidade: entidade)
+        ultimoId += 1
+        functions.saveTextCoreData(texto: textLabel.text!, id: ultimoId, entidade: entidade)
+        delegate?.liked()
+    }
     
 }

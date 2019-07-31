@@ -1,5 +1,5 @@
 //
-//  CustomCellCollection.swift
+//  CustomSection.swift
 //  NanoProject
 //
 //  Created by Daniel Leal on 31/07/19.
@@ -7,14 +7,14 @@
 //
 
 import Foundation
+
 import UIKit
 
-class CustomCellCollection: UICollectionViewCell {
+class CustomSection: UICollectionReusableView{
     
     
-    @IBOutlet weak var imagemCell: UIImageView!
-    var text = String()
-    var autor = String()
+    @IBOutlet weak var titleSection: UILabel!
+    
     
     
 }

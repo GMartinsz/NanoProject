@@ -50,7 +50,13 @@ class Functions {
             guard let artigos = dicionario["articles"] as? [[String: AnyObject]] else {return}
             
             let index = self.generateIndex(limite: artigos.count)
-            let artigo = artigos[index]
+            var artigo = artigos[index]
+            
+            while artigo["urlToImage"] as? String == nil{
+                let index = self.generateIndex(limite: artigos.count)
+                artigo = artigos[index]
+            }
+            
             guard let urlImagem = URL(string: artigo["urlToImage"] as! String) else {return}
             self.baixarImagem(url: urlImagem, completion: { (image) in
                 completion(image, artigo)
@@ -78,8 +84,13 @@ class Functions {
             guard let artigos = dicionario["articles"] as? [[String: AnyObject]] else {return}
             
             let index = self.generateIndex(limite: artigos.count)
-            let artigo = artigos[index]
-            guard let stringUrlImagem = artigo["urlToImage"] as? String else {return}
+            var artigo = artigos[index]
+            
+            while artigo["urlToImage"] as? String == nil{
+                let index = self.generateIndex(limite: artigos.count)
+                artigo = artigos[index]
+            }
+            let stringUrlImagem = artigo["urlToImage"] as! String 
             guard let urlImagem = URL(string: stringUrlImagem) else {return}
             self.baixarImagem(url: urlImagem, completion: { (image) in
                 completion(image, artigo)
@@ -131,7 +142,7 @@ class Functions {
             let json = JSON(data.result.value!)
             guard let dicionario = json.dictionaryObject else {return}
             guard let photos = dicionario["photos"] as? [[String: AnyObject]] else {return}
-            guard let photo = photos[0] as? [String:AnyObject] else {return}
+            let photo = photos[0] as [String:AnyObject] 
             
             
             guard let source = photo["src"] as? [String:AnyObject] else {return}
@@ -143,29 +154,27 @@ class Functions {
             })
         })
     }
+//
+//    func downloadImage(url: URL, idImage: Int64, entidade: String, completion: @escaping (UIImage?) -> Void){
+//        var imagem: UIImage?
+//
+//        Alamofire.request(url, method: .get)
+//            .responseData { response in
+//            guard let imageData = response.result.value else {
+//                return
+//            }
+//            imagem = UIImage(data: imageData)
+//            self.saveImageCoreData(imagem: imagem!, idImage: idImage, entidade: entidade)
+//            completion(imagem)
+//            }
+//            .downloadProgress { (progress) in
+//
+//                print(progress.completedUnitCount)
+//            }
+//    }
     
     
-    
-    func downloadImage(url: URL, idImage: Int64, completion: @escaping (UIImage?) -> Void){
-        var imagem: UIImage?
-        
-        Alamofire.request(url, method: .get)
-            .responseData { response in
-            guard let imageData = response.result.value else {
-                return
-            }
-            imagem = UIImage(data: imageData)
-            self.saveImageCoreData(imagem: imagem!, idImage: idImage)
-            completion(imagem)
-            }
-            .downloadProgress { (progress) in
-                
-                print(progress.completedUnitCount)
-            }
-    }
-    
-    
-    func saveImageCoreData(imagem: UIImage, idImage: Int64){
+    func saveImageCoreData(imagem: UIImage, idImage: Int64, entidade: String, autor: String){
         
         guard let imageData = imagem.jpegData(compressionQuality: 0.2) else {return}
         guard let appDelegate =
@@ -177,7 +186,8 @@ class Functions {
         guard let entity = NSEntityDescription.entity(forEntityName: "FavoriteImage", in: manageContext) else {return}
         let image = NSManagedObject(entity: entity, insertInto: manageContext)
         image.setValue(imageData, forKeyPath: "imageData")
-        image.setValue(idImage, forKey: "idImage")
+        image.setValue(idImage, forKey: "id")
+        image.setValue(autor, forKey: "autor")
         
         do {
             try manageContext.save()
@@ -186,5 +196,83 @@ class Functions {
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
+    
+    
+    func buscarUltimoIdCoreData(entidade: String) -> Int64{
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return 0
+        }
+        
+        let manageContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entidade)
+        
+        do  {
+            
+            let result = try manageContext.fetch(fetchRequest)
+            let array = result as! [NSManagedObject]
+            guard let ultimoId = array.last?.value(forKey: "id") as? Int64 else {return 0}
+            return ultimoId
+            
+        } catch {
+            print("Failed")
+        }
+        
+        return 0
+    }
+    
+    
+    func saveNewsCoreData(imagem: UIImage, idImage: Int64, texto: String, titulo: String, autor: String){
+        guard let imageData = imagem.jpegData(compressionQuality: 0.2) else {return}
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        let manageContext = appDelegate.persistentContainer.viewContext
+        guard let new = NSEntityDescription.entity(forEntityName: "NewsData", in: manageContext) else {return}
+        let object = NSManagedObject(entity: new, insertInto: manageContext)
+        object.setValue(idImage, forKey: "id")
+        object.setValue(texto, forKey: "texto")
+        object.setValue(imageData, forKey: "imageNews")
+        object.setValue(titulo, forKey: "titulo")
+        object.setValue(autor, forKey: "autor")
+        
+        do {
+            try manageContext.save()
+            print("salvou")
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+        
+    }
+    
+    
+    func saveTextCoreData(texto: String, id: Int64, entidade: String){
+        
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        let manageContext = appDelegate.persistentContainer.viewContext
+        guard let new = NSEntityDescription.entity(forEntityName: entidade, in: manageContext) else {return}
+        let object = NSManagedObject(entity: new, insertInto: manageContext)
+        object.setValue(id, forKey: "id")
+        object.setValue(texto, forKey: "texto")
+        
+        do {
+            try manageContext.save()
+            print("salvou")
+        } catch let error as NSError {
+            
+            print(error)
+        
+        }
+        
+    }
+
+    
+    
   
 }
