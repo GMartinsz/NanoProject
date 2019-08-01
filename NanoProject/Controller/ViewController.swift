@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     let functions = Functions()
     var ultimoPopover = UIView()
     var entrouFavPopover = false
-    
+    var collection: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,12 +53,54 @@ class ViewController: UIViewController {
     override var prefersHomeIndicatorAutoHidden: Bool {
         return true
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        collection = []
+        if UserDefaults.standard.bool(forKey: "cat") {
+            collection.append("cat")
+        }
+        if UserDefaults.standard.bool(forKey: "cn") {
+            collection.append("cn")
+        }
+        if UserDefaults.standard.bool(forKey: "design") {
+            collection.append("design")
+        }
+        if UserDefaults.standard.bool(forKey: "insult") {
+            collection.append("insult")
+        }
+        if UserDefaults.standard.bool(forKey: "gifs") {
+            collection.append("gifs")
+        }
+        if UserDefaults.standard.bool(forKey: "jokes") {
+            collection.append("jokes")
+        }
+        if UserDefaults.standard.bool(forKey: "memes") {
+            collection.append("memes")
+        }
+        if UserDefaults.standard.bool(forKey: "movies") {
+            collection.append("movies")
+        }
+        if UserDefaults.standard.bool(forKey: "music") {
+            collection.append("music")
+        }
+        if UserDefaults.standard.bool(forKey: "news") {
+            collection.append("news")
+        }
+        if UserDefaults.standard.bool(forKey: "quotes") {
+            collection.append("quotes")
+        }
+        if UserDefaults.standard.bool(forKey: "sports") {
+            collection.append("sports")
+        }
+        if UserDefaults.standard.bool(forKey: "tvshow") {
+            collection.append("tvshow")
+        }
+    }
 
     @IBAction func generateButton(_ sender: UIButton) {
 
         canButton = !canButton
         if canButton{
-            loadingOutlet.startAnimating()
             popoverPlexels.removeFromSuperview()
             popoverNoticias.removeFromSuperview()
             popoverImagens.removeFromSuperview()
@@ -67,53 +109,60 @@ class ViewController: UIViewController {
             popoverNoticias.curtirOutlet.isEnabled = true
             popoverImagens.curtirOutlet.isEnabled = true
             labelOutlet.curtirOutlet.isEnabled = true
-            let index = Int.random(in: 0...11)
-            switch index {
-            case 0:
-                getJokes()
-                self.view.backgroundColor = .init(red: 1, green: 0.8, blue: 0.05, alpha: 1)
-                self.titleOutlet.text = "Jokes"
-            case 1:
-                getCNFacts()
-                self.view.backgroundColor = .init(red: 0.8, green: 0.2, blue: 0.2, alpha: 1)
-                self.titleOutlet.text = "Chuck Norris Facts"
-            case 2:
-                getQuotes()
-                self.view.backgroundColor = .init(red: 0.5, green: 0.52, blue: 0.6, alpha: 1)
-                self.titleOutlet.text = "Quotes"
-            case 3:
-                newsPorPais()
-                self.view.backgroundColor = .gray
-                self.titleOutlet.text = "News"
-            case 4:
-                getInsults()
-                self.view.backgroundColor = .init(red: 1, green: 0.2, blue: 0.2, alpha: 1)
-                self.titleOutlet.text = "Insults"
-            case 5:
-                getCatFacts()
-                self.view.backgroundColor = .init(red: 1, green: 0.8, blue: 0.05, alpha: 1)
-                self.titleOutlet.text = "Cat Facts"
-            case 6:
-                getMemes()
-                self.view.backgroundColor = .init(red: 0, green: 0.8, blue: 0.2, alpha: 1)
-                self.titleOutlet.text = "Memes"
-            case 7:
-                getRandomImages()
-                self.titleOutlet.text = "Images"
-            case 8:
-                newsSports()
-                self.titleOutlet.text = "Sport News"
-            case 9:
-                getGifs()
-                self.titleOutlet.text = "Gifs"
-            case 10:
-                getMovie()
-                self.titleOutlet.text = "Movie Recommendation"
-            case 11:
-                getTVShow()
-                self.titleOutlet.text = "TV Show Recommendation"
-          default:
-                print("teste")
+            if collection.count == 0 {
+                self.titleOutlet.text = "Choose your feeds in Configs"
+                self.titleOutlet.textColor = .red
+            } else {
+                let index = Int.random(in: 0...collection.count - 1)
+                self.titleOutlet.textColor = .black
+                loadingOutlet.startAnimating()
+                switch collection[index] {
+                case "jokes":
+                    getJokes()
+                    self.view.backgroundColor = .init(red: 1, green: 0.8, blue: 0.05, alpha: 1)
+                    self.titleOutlet.text = "Jokes"
+                case "cn":
+                    getCNFacts()
+                    self.view.backgroundColor = .init(red: 0.8, green: 0.2, blue: 0.2, alpha: 1)
+                    self.titleOutlet.text = "Chuck Norris Facts"
+                case "quotes":
+                    getQuotes()
+                    self.view.backgroundColor = .init(red: 0.5, green: 0.52, blue: 0.6, alpha: 1)
+                    self.titleOutlet.text = "Quotes"
+                case "news":
+                    newsPorPais()
+                    self.view.backgroundColor = .gray
+                    self.titleOutlet.text = "News"
+                case "insult":
+                    getInsults()
+                    self.view.backgroundColor = .init(red: 1, green: 0.2, blue: 0.2, alpha: 1)
+                    self.titleOutlet.text = "Insults"
+                case "cat":
+                    getCatFacts()
+                    self.view.backgroundColor = .init(red: 1, green: 0.8, blue: 0.05, alpha: 1)
+                    self.titleOutlet.text = "Cat Facts"
+                case "memes":
+                    getMemes()
+                    self.view.backgroundColor = .init(red: 0, green: 0.8, blue: 0.2, alpha: 1)
+                    self.titleOutlet.text = "Memes"
+                case "design":
+                    getRandomImages()
+                    self.titleOutlet.text = "Images"
+                case "sports":
+                    newsSports()
+                    self.titleOutlet.text = "Sport News"
+                case "gifs":
+                    getGifs()
+                    self.titleOutlet.text = "Gifs"
+                case "movies":
+                    getMovie()
+                    self.titleOutlet.text = "Movie Recommendation"
+                case "tvshow":
+                    getTVShow()
+                    self.titleOutlet.text = "TV Show Recommendation"
+              default:
+                    print("teste")
+                }
             }
         }
 
