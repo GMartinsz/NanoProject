@@ -33,7 +33,13 @@ class ViewControllerFavs: UICollectionViewController {
     
     //Collections
 
-    @IBOutlet var imagemPopover: PopoverImagemView2!
+    
+    
+    //Popovers
+    @IBOutlet var popoverLabel: PopoverLabelCollection!
+    @IBOutlet var popoverPlexels: PopoverPlexelCollection!
+    @IBOutlet var popoverImagem: PopoverImagemCollection!
+    @IBOutlet var popoverNoticias: PopoverNoticiasCollection!
     
     private let sectionInsets = UIEdgeInsets(top: 10.0, left: 20.0, bottom: 10.0, right: 20.0)
     private let itemsPerRow:CGFloat = 3
@@ -43,6 +49,9 @@ class ViewControllerFavs: UICollectionViewController {
     var frasesChuckNorris = [Frases]()
     var arrayMemes = [Imagens]()
     var arrayNews = [Noticias]()
+    var arrayGifs = [Imagens]()
+    var arraySports = [Noticias]()
+    var arrayFilmes = [Noticias]()
     var arrayFactsCN = [Frases]()
     var arrayQuotes = [Frases]()
     var arrayJokes = [Frases]()
@@ -55,11 +64,9 @@ class ViewControllerFavs: UICollectionViewController {
     
     //Variaveis normais
     var blurEffectView = UIVisualEffectView()
-    var entrouPopoverImagem = false
-   
+    var entrouPopover = false
     
-    override func viewDidLoad() {
-        
+    override func viewWillAppear(_ animated: Bool) {
         setarConteudo()
     }
     
@@ -72,10 +79,10 @@ class ViewControllerFavs: UICollectionViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if entrouPopoverImagem {
-            self.imagemPopover.removeFromSuperview()
-            entrouPopoverImagem = false
+        if entrouPopover {
+            entrouPopover = false
             self.blurEffectView.removeFromSuperview()
+            self.removeAllPopovers()
         }
     }
     
@@ -97,12 +104,12 @@ extension ViewControllerFavs{
         
         let string = arraySections[section]
         
-        if string == "Imagens" || string == "Memes" {
+        if string == "Imagens" || string == "Memes" || string == "Gifs"{
             let array = dictionaryArray[string] as! [Imagens]
             return array.count
         }
         
-        if string == "Notícias" {
+        if string == "Notícias" || string == "Esportes" || string == "Filmes e Seriados"{
             let array = dictionaryArray[string] as! [Noticias]
             return array.count
         }
@@ -125,50 +132,98 @@ extension ViewControllerFavs{
         let section = arraySections[indexPath.section]
        
         switch section {
-        case "Images":
+        case "Imagens":
             let array = arrayImagens[indexPath.row]
             cell.imagemCell.isHidden = false
             cell.labelCell.isHidden = true
             cell.imagemCell.image = array.imagem
+            cell.categoria = "Plexel"
+            cell.autor = array.autor
+            
         case "Notícias":
             let array = arrayNews[indexPath.row]
             cell.imagemCell.isHidden = false
             cell.labelCell.isHidden = true
             cell.imagemCell.image = array.imagem
+            cell.categoria = "Noticias"
+            cell.autor = array.fonte
+            cell.text = array.texto
+            cell.titulo = array.titulo
+            
         case "Piadas":
             let array = arrayJokes[indexPath.row]
             cell.imagemCell.isHidden = true
             cell.labelCell.isHidden = false
             cell.labelCell.text = array.frase
+            cell.categoria = "Frases"
+            cell.text = array.frase
+            
         case "Fatos Chuck Norris":
             let array = arrayFactsCN[indexPath.row]
             cell.imagemCell.isHidden = true
             cell.labelCell.isHidden = false
             cell.labelCell.text = array.frase
+            cell.categoria = "Frases"
+            cell.text = array.frase
             
         case "Fatos de Gatos":
             let array = arrayCatFacts[indexPath.row]
             cell.imagemCell.isHidden = true
             cell.labelCell.isHidden = false
             cell.labelCell.text = array.frase
-
+            cell.categoria = "Frases"
+            cell.text = array.frase
+            
         case "Frases":
             let array = arrayQuotes[indexPath.row]
             cell.imagemCell.isHidden = true
             cell.labelCell.isHidden = false
             cell.labelCell.text = array.frase
+            cell.categoria = "Frases"
+            cell.text = array.frase
 
         case "Insultos":
             let array = arrayInsultos[indexPath.row]
             cell.imagemCell.isHidden = true
             cell.labelCell.isHidden = false
             cell.labelCell.text = array.frase
-
+            cell.categoria = "Frases"
+            cell.text = array.frase
+            
         case "Memes":
             let array = arrayMemes[indexPath.row]
             cell.imagemCell.isHidden = false
             cell.labelCell.isHidden = true
             cell.imagemCell.image = array.imagem
+            cell.categoria = "Imagem"
+            
+        case "Gifs":
+            let array = arrayGifs[indexPath.row]
+            cell.imagemCell.isHidden = false
+            cell.labelCell.isHidden = true
+            cell.imagemCell.image = array.imagem
+            cell.categoria = "Imagem"
+            
+        case "Filmes e Seriados":
+            let array = arrayFilmes[indexPath.row]
+            cell.imagemCell.isHidden = false
+            cell.labelCell.isHidden = true
+            cell.imagemCell.image = array.imagem
+            cell.categoria = "Noticias"
+            cell.autor = array.fonte
+            cell.text = array.texto
+            cell.titulo = array.titulo
+            
+        case "Esportes":
+            let array = arraySports[indexPath.row]
+            cell.imagemCell.isHidden = false
+            cell.labelCell.isHidden = true
+            cell.imagemCell.image = array.imagem
+            cell.categoria = "Noticias"
+            cell.autor = array.fonte
+            cell.text = array.texto
+            cell.titulo = array.titulo
+            
         default:
             break
         }
@@ -181,17 +236,49 @@ extension ViewControllerFavs{
 
 extension ViewControllerFavs{
     
+    func removeAllPopovers(){
+        for view in self.view.subviews{
+            if view == popoverNoticias || view == popoverImagem || view == popoverLabel || view == popoverPlexels {
+                view.removeFromSuperview()
+            }
+        }
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let cell = collectionView.cellForItem(at: indexPath) as? CustomCellCollection, !entrouPopoverImagem{
-            self.imagemPopover.imagemView.image = cell.imagemCell.image
-            imagemPopover.center = view.center
+        if let cell = collectionView.cellForItem(at: indexPath) as? CustomCellCollection, !entrouPopover{
+            
+            self.removeAllPopovers()
+            
             let blurEffect = UIBlurEffect(style: .dark)
             blurEffectView = UIVisualEffectView(effect: blurEffect)
             blurEffectView.frame = self.view.bounds
             blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             view.addSubview(blurEffectView)
-            view.addSubview(imagemPopover)
-            self.entrouPopoverImagem = true
+            
+            if cell.categoria == "Imagem"{
+                self.popoverImagem.imagem.image = cell.imagemCell.image
+                self.popoverImagem.center = self.view.center
+                self.view.addSubview(popoverImagem)
+            }
+            else if cell.categoria == "Plexel" {
+                self.popoverPlexels.imagem.image = cell.imagemCell.image
+                self.popoverPlexels.center = self.view.center
+                self.popoverPlexels.autor.text = cell.autor
+                self.view.addSubview(popoverPlexels)
+            }
+            else if cell.categoria == "Noticias"{
+                self.popoverNoticias.imagem.image = cell.imagemCell.image
+                self.popoverNoticias.titulo.text = cell.titulo
+                self.popoverNoticias.texto.text = cell.text
+                self.popoverNoticias.center = self.view.center
+                self.view.addSubview(popoverNoticias)
+            }
+            else if cell.categoria == "Frases"{
+                self.popoverLabel.texto.text = cell.text
+                self.popoverLabel.center = self.view.center
+                self.view.addSubview(popoverLabel)
+            }
+            entrouPopover = true
         }
     }
     
@@ -229,7 +316,6 @@ extension ViewControllerFavs: UICollectionViewDelegateFlowLayout{
 
 extension ViewControllerFavs {
     
-    
     func loadArrayImagens(entity: String) -> [Imagens]? {
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
@@ -241,7 +327,7 @@ extension ViewControllerFavs {
         
         do {
             let arrayObjects = try manageContext.fetch(fetchRequest)
-            return parsingImages(arrayObjects: arrayObjects)
+            return parsingImages(arrayObjects: arrayObjects, entidade: entity)
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
             return nil
@@ -250,20 +336,29 @@ extension ViewControllerFavs {
     }
     
  
-    func parsingImages(arrayObjects: [NSManagedObject]) -> [Imagens]?{
+    func parsingImages(arrayObjects: [NSManagedObject], entidade: String) -> [Imagens]?{
 
         var array = [Imagens]()
         
         for images in arrayObjects {
             var obj = Imagens()
             guard let uiImage = images.value(forKey: "imageData") as? Data else {return nil}
-            guard let imagem = UIImage(data: uiImage) else {return nil}
+            if (entidade == "GifData"){
+                guard let imagem = UIImage.gifImageWithData(uiImage) else {return nil}
+                obj.imagem = imagem
+            }else {
+                guard let imagem = UIImage(data: uiImage) else {return nil}
+                obj.imagem = imagem
+            }
             guard let id = images.value(forKey: "id") as? Int64 else {return nil}
-            guard let autor = images.value(forKey: "autor") as? String else {return nil}
+            if (entidade == "FavoriteImage"){
+                guard let autor = images.value(forKey: "autor") as? String else {return nil}
+                obj.autor = autor
+            }else {
+                obj.autor = "Desconhecido"
+            }
+            
             obj.id = id
-            obj.imagem = imagem
-            obj.autor = autor
-  
             array.append(obj)
         }
         
@@ -321,14 +416,14 @@ extension ViewControllerFavs {
     }
     
     
-    func loadNews() -> [Noticias]? {
+    func loadNews(entidade: String) -> [Noticias]? {
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
                 return nil
         }
         
         let manageContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "NewsData")
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entidade)
         
         do {
             let arrayObjects = try manageContext.fetch(fetchRequest)
@@ -346,7 +441,7 @@ extension ViewControllerFavs {
         for object in arrayObjects {
             var obj = Noticias()
             guard let id = object.value(forKey: "id") as? Int64 else {return nil}
-            guard let imageData = object.value(forKey: "imageNews") as? Data else {return nil}
+            guard let imageData = object.value(forKey: "imageData") as? Data else {return nil}
             guard let texto = object.value(forKey: "texto") as? String else {return nil}
             guard let titulo = object.value(forKey: "titulo") as? String else {return nil}
             guard let fonte = object.value(forKey: "autor") as? String else {return nil}
@@ -368,6 +463,7 @@ extension ViewControllerFavs {
     
     
     func setarConteudo(){
+        arraySections = [String]()
         if let array = loadArrayImagens(entity: "FavoriteImage"){
             arrayImagens = array
             arraySections.append("Imagens")
@@ -380,10 +476,28 @@ extension ViewControllerFavs {
             dictionaryArray.updateValue(arrayMemes as AnyObject, forKey: "Memes")
         }
         
-        if let array = loadNews(){
+        if let array = loadArrayImagens(entity: "GifData"){
+            arrayGifs = array
+            arraySections.append("Gifs")
+            dictionaryArray.updateValue(arrayGifs as AnyObject, forKey: "Gifs")
+        }
+        
+        if let array = loadNews(entidade: "NewsData"){
             arrayNews = array
             arraySections.append("Notícias")
             dictionaryArray.updateValue(arrayNews as AnyObject, forKey: "Notícias")
+        }
+        
+        if let array = loadNews(entidade: "FilmesData"){
+            arrayFilmes = array
+            arraySections.append("Filmes e Seriados")
+            dictionaryArray.updateValue(arrayFilmes as AnyObject, forKey: "Filmes e Seriados")
+        }
+        
+        if let array = loadNews(entidade: "SportsData"){
+            arraySports = array
+            arraySections.append("Esportes")
+            dictionaryArray.updateValue(arraySports as AnyObject, forKey: "Esportes")
         }
         
         if let array = loadArrayFrases(entity: "JokesData"){

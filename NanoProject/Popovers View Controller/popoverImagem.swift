@@ -15,14 +15,15 @@ class popoverImagem: UIView {
     
     var urlImagem: URL?
     weak var delegate: Like?
+    var entidade = String()
     
     @IBOutlet weak var imagem: UIImageView!
     
     @IBAction func curtir(_ sender: Any) {
         
-        var ultimoId = functions.buscarUltimoIdCoreData(entidade: "MemesData")
+        var ultimoId = functions.buscarUltimoIdCoreData(entidade: entidade)
         ultimoId += 1
-        functions.saveImageCoreData(imagem: imagem.image!, idImage: ultimoId, entidade: "MemesData", autor: "")
+        functions.saveImageCoreData(imagem: imagem.image!, idImage: ultimoId, entidade: entidade, autor: "")
         self.delegate?.liked()
         
     }

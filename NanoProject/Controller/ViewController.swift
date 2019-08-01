@@ -63,7 +63,7 @@ class ViewController: UIViewController {
             popoverNoticias.removeFromSuperview()
             popoverImagens.removeFromSuperview()
             labelOutlet.removeFromSuperview()
-            let index = Int.random(in: 0...11)
+            let index = Int.random(in: 9...9)
             switch index {
             case 0:
                 getJokes()
@@ -131,6 +131,7 @@ class ViewController: UIViewController {
             }else if let idSource = source["id"] as? String {
                 fontName = idSource
             }
+            self.popoverNoticias.entidade = "NewsData"
             self.popoverNoticias.autorNoticia = fontName
             self.popoverNoticias.imagem.image = imagem
             self.popoverNoticias.noticia.text =  (content as! String)
@@ -160,6 +161,7 @@ class ViewController: UIViewController {
             }else if let idSource = source["id"] as? String {
                 fontName = idSource
             }
+            self.popoverNoticias.entidade = "SportsData"
             self.popoverNoticias.autorNoticia = fontName
             self.popoverNoticias.imagem.image = imagem
             if let conteudo = content as? String {
@@ -284,6 +286,7 @@ class ViewController: UIViewController {
             let url = dataDO!["url"] as! String
             self.functions.baixarImagem(url: URL(string: url)!, completion: { (imagem) in
                 self.popoverImagens.imagem.image = imagem
+                self.popoverImagens.entidade = "MemesData"
                 self.view.addSubview(self.popoverImagens)
                 self.imageOutletAutoLayout()
                 self.canButton = !self.canButton
@@ -299,6 +302,7 @@ class ViewController: UIViewController {
             let url = array["image_url"] as! String
             let image = UIImage.gifImageWithURL(url)
             self.popoverImagens.imagem.image = image
+            self.popoverImagens.entidade = "GifData"
             self.view.addSubview(self.popoverImagens)
             self.imageOutletAutoLayout()
             self.canButton = !self.canButton
@@ -327,6 +331,7 @@ class ViewController: UIViewController {
                 self.popoverNoticias.imagem.image = imagem
                 self.popoverNoticias.noticia.text = chosenMovie["descricao"]
                 self.view.addSubview(self.popoverNoticias)
+                self.popoverNoticias.entidade = "FilmesData"
                 self.newsOutletAutoLayout()
                 self.popoverNoticias.tituloNoticia.text = chosenMovie["title"]
                 self.canButton = !self.canButton

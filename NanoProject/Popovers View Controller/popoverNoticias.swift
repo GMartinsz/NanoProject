@@ -18,6 +18,7 @@ class popoverNoticias : UIView {
     @IBOutlet weak var imagem: UIImageView!
     @IBOutlet weak var noticia: UITextView!
     var autorNoticia = String()
+    var entidade = String()
     
     weak var delegate: Like?
 
@@ -30,13 +31,13 @@ class popoverNoticias : UIView {
     
     
     @IBAction func curtir(_ sender: Any) {
-        var id = functions.buscarUltimoIdCoreData(entidade: "NewsData")
+        var id = functions.buscarUltimoIdCoreData(entidade: entidade)
         id += 1
         var autor = String()
         if autorNoticia == ""{
             autor = "Desconhecido"
         }
-        functions.saveNewsCoreData(imagem: imagem.image!, idImage: id, texto: noticia.text, titulo: tituloNoticia.text!, autor: autor)
+        functions.saveNewsCoreData(imagem: imagem.image!, idImage: id, texto: noticia.text, titulo: tituloNoticia.text!, autor: autor, entidade: entidade)
         delegate?.liked()
     }
     

@@ -15,9 +15,10 @@ class CustomCellCollection: UICollectionViewCell {
     @IBOutlet weak var imagemCell: UIImageView!
     @IBOutlet weak var labelCell: UILabel!
     
-    
+    var categoria = String()
     var text = String()
     var autor = String()
+    var titulo = String()
     
     
 }

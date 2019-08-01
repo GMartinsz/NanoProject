@@ -154,40 +154,25 @@ class Functions {
             })
         })
     }
-//
-//    func downloadImage(url: URL, idImage: Int64, entidade: String, completion: @escaping (UIImage?) -> Void){
-//        var imagem: UIImage?
-//
-//        Alamofire.request(url, method: .get)
-//            .responseData { response in
-//            guard let imageData = response.result.value else {
-//                return
-//            }
-//            imagem = UIImage(data: imageData)
-//            self.saveImageCoreData(imagem: imagem!, idImage: idImage, entidade: entidade)
-//            completion(imagem)
-//            }
-//            .downloadProgress { (progress) in
-//
-//                print(progress.completedUnitCount)
-//            }
-//    }
     
     
+    //Core Data
     func saveImageCoreData(imagem: UIImage, idImage: Int64, entidade: String, autor: String){
         
-        guard let imageData = imagem.jpegData(compressionQuality: 0.2) else {return}
+        guard let imageData = imagem.pngData() else {return}
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
                 return
         }
         
         let manageContext = appDelegate.persistentContainer.viewContext
-        guard let entity = NSEntityDescription.entity(forEntityName: "FavoriteImage", in: manageContext) else {return}
+        guard let entity = NSEntityDescription.entity(forEntityName: entidade, in: manageContext) else {return}
         let image = NSManagedObject(entity: entity, insertInto: manageContext)
         image.setValue(imageData, forKeyPath: "imageData")
         image.setValue(idImage, forKey: "id")
-        image.setValue(autor, forKey: "autor")
+        if (autor != ""){
+            image.setValue(autor, forKey: "autor")
+        }
         
         do {
             try manageContext.save()
@@ -222,7 +207,7 @@ class Functions {
     }
     
     
-    func saveNewsCoreData(imagem: UIImage, idImage: Int64, texto: String, titulo: String, autor: String){
+    func saveNewsCoreData(imagem: UIImage, idImage: Int64, texto: String, titulo: String, autor: String, entidade: String){
         guard let imageData = imagem.jpegData(compressionQuality: 0.2) else {return}
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
@@ -230,11 +215,11 @@ class Functions {
         }
         
         let manageContext = appDelegate.persistentContainer.viewContext
-        guard let new = NSEntityDescription.entity(forEntityName: "NewsData", in: manageContext) else {return}
+        guard let new = NSEntityDescription.entity(forEntityName: entidade, in: manageContext) else {return}
         let object = NSManagedObject(entity: new, insertInto: manageContext)
         object.setValue(idImage, forKey: "id")
         object.setValue(texto, forKey: "texto")
-        object.setValue(imageData, forKey: "imageNews")
+        object.setValue(imageData, forKey: "imageData")
         object.setValue(titulo, forKey: "titulo")
         object.setValue(autor, forKey: "autor")
         
