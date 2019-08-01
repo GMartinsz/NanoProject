@@ -13,6 +13,9 @@ class CustomCellCollection: UICollectionViewCell {
     
     
     @IBOutlet weak var imagemCell: UIImageView!
+    @IBOutlet weak var labelCell: UILabel!
+    
+    
     var text = String()
     var autor = String()
     

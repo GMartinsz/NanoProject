@@ -111,7 +111,7 @@ class ViewController: UIViewController {
         let apiNews = News()
         apiNews.country = "br"
         functions.searchTopHeadlines(api: apiNews, completion: { (imagem, artigo) in
-            guard let content = artigo["description"] else {return}
+            guard let content = artigo["content"] else {return}
             guard let title = artigo["title"] else {return}
             guard let urlDestino = artigo["url"] else {return}
             guard let source = artigo["source"] as? [String: AnyObject] else {return}

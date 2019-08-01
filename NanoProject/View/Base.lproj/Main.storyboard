@@ -372,17 +372,28 @@
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cvu-JE-CZC">
                                             <rect key="frame" x="9" y="4.5" width="121" height="164"/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHe-aN-Iza">
+                                            <rect key="frame" x="20" y="17.5" width="99" height="138"/>
+                                            <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="22"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </view>
                                 <color key="backgroundColor" red="0.59595098349999998" green="0.59595098349999998" blue="0.59595098349999998" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
+                                    <constraint firstItem="eHe-aN-Iza" firstAttribute="leading" secondItem="Zo5-3E-QJz" secondAttribute="leadingMargin" constant="12" id="9Sp-uW-JbX"/>
                                     <constraint firstItem="cvu-JE-CZC" firstAttribute="height" secondItem="Zo5-3E-QJz" secondAttribute="height" multiplier="0.95" id="9iS-nr-3Q4"/>
+                                    <constraint firstItem="eHe-aN-Iza" firstAttribute="height" secondItem="Zo5-3E-QJz" secondAttribute="height" multiplier="0.8" id="A5g-Wh-3ZY"/>
+                                    <constraint firstItem="eHe-aN-Iza" firstAttribute="centerY" secondItem="Zo5-3E-QJz" secondAttribute="centerY" id="PTx-We-iXI"/>
                                     <constraint firstItem="cvu-JE-CZC" firstAttribute="leading" secondItem="Zo5-3E-QJz" secondAttribute="leadingMargin" constant="1" id="Yh2-Av-LtL"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="eHe-aN-Iza" secondAttribute="trailing" constant="12" id="lDL-d7-HMM"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="cvu-JE-CZC" secondAttribute="trailing" constant="1" id="s0j-ya-NIC"/>
                                     <constraint firstItem="cvu-JE-CZC" firstAttribute="centerY" secondItem="Zo5-3E-QJz" secondAttribute="centerY" id="yzu-UR-y1V"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="imagemCell" destination="cvu-JE-CZC" id="Kff-xZ-TKP"/>
+                                    <outlet property="labelCell" destination="eHe-aN-Iza" id="SMe-1B-PzX"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>

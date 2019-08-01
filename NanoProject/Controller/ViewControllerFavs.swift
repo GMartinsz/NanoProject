@@ -50,6 +50,8 @@ class ViewControllerFavs: UICollectionViewController {
     var arrayCatFacts = [Frases]()
     var arraySections = [String]()
     
+    var dictionaryArray = [String:AnyObject]()
+    
     
     //Variaveis normais
     var blurEffectView = UIVisualEffectView()
@@ -87,15 +89,29 @@ extension ViewControllerFavs{
         if arraySections.count > 0 {
              section.titleSection.text = arraySections[indexPath.section]
         }
+
         return section
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if section == 0 {
-            return self.arrayNews.count
+        let string = arraySections[section]
+        
+        if string == "Imagens" || string == "Memes" {
+            let array = dictionaryArray[string] as! [Imagens]
+            return array.count
         }
         
+        if string == "Notícias" {
+            let array = dictionaryArray[string] as! [Noticias]
+            return array.count
+        }
+        
+        if string == "Piadas" || string == "Fatos de Gatos" || string == "Fatos Chuck Norris" || string == "Insultos" || string == "Frases" {
+            let array = dictionaryArray[string] as! [Frases]
+            return array.count
+        }
+
         return 0
     }
     
@@ -105,6 +121,58 @@ extension ViewControllerFavs{
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellReuse", for: indexPath) as! CustomCellCollection
+        
+        let section = arraySections[indexPath.section]
+       
+        switch section {
+        case "Images":
+            let array = arrayImagens[indexPath.row]
+            cell.imagemCell.isHidden = false
+            cell.labelCell.isHidden = true
+            cell.imagemCell.image = array.imagem
+        case "Notícias":
+            let array = arrayNews[indexPath.row]
+            cell.imagemCell.isHidden = false
+            cell.labelCell.isHidden = true
+            cell.imagemCell.image = array.imagem
+        case "Piadas":
+            let array = arrayJokes[indexPath.row]
+            cell.imagemCell.isHidden = true
+            cell.labelCell.isHidden = false
+            cell.labelCell.text = array.frase
+        case "Fatos Chuck Norris":
+            let array = arrayFactsCN[indexPath.row]
+            cell.imagemCell.isHidden = true
+            cell.labelCell.isHidden = false
+            cell.labelCell.text = array.frase
+            
+        case "Fatos de Gatos":
+            let array = arrayCatFacts[indexPath.row]
+            cell.imagemCell.isHidden = true
+            cell.labelCell.isHidden = false
+            cell.labelCell.text = array.frase
+
+        case "Frases":
+            let array = arrayQuotes[indexPath.row]
+            cell.imagemCell.isHidden = true
+            cell.labelCell.isHidden = false
+            cell.labelCell.text = array.frase
+
+        case "Insultos":
+            let array = arrayInsultos[indexPath.row]
+            cell.imagemCell.isHidden = true
+            cell.labelCell.isHidden = false
+            cell.labelCell.text = array.frase
+
+        case "Memes":
+            let array = arrayMemes[indexPath.row]
+            cell.imagemCell.isHidden = false
+            cell.labelCell.isHidden = true
+            cell.imagemCell.image = array.imagem
+        default:
+            break
+        }
+        
         
         return cell
     }
@@ -196,6 +264,7 @@ extension ViewControllerFavs {
             obj.imagem = imagem
             obj.autor = autor
   
+            array.append(obj)
         }
         
         if array.count == 0 {
@@ -302,41 +371,49 @@ extension ViewControllerFavs {
         if let array = loadArrayImagens(entity: "FavoriteImage"){
             arrayImagens = array
             arraySections.append("Imagens")
+            dictionaryArray.updateValue(arrayImagens as AnyObject, forKey: "Imagens")
         }
         
         if let array = loadArrayImagens(entity: "MemesData"){
             arrayMemes = array
-             arraySections.append("Memes")
+            arraySections.append("Memes")
+            dictionaryArray.updateValue(arrayMemes as AnyObject, forKey: "Memes")
         }
         
         if let array = loadNews(){
             arrayNews = array
             arraySections.append("Notícias")
+            dictionaryArray.updateValue(arrayNews as AnyObject, forKey: "Notícias")
         }
         
         if let array = loadArrayFrases(entity: "JokesData"){
             arrayJokes = array
             arraySections.append("Piadas")
+            dictionaryArray.updateValue(arrayJokes as AnyObject, forKey: "Piadas")
         }
         
         if let array = loadArrayFrases(entity: "QuoteData"){
             arrayQuotes = array
             arraySections.append("Frases")
+            dictionaryArray.updateValue(arrayQuotes as AnyObject, forKey: "Frases")
         }
         
         if let array = loadArrayFrases(entity: "InsultoData"){
             arrayInsultos = array
             arraySections.append("Insultos")
+            dictionaryArray.updateValue(arrayInsultos as AnyObject, forKey: "Insultos")
         }
         
         if let array = loadArrayFrases(entity: "FactsCNData"){
             arrayFactsCN = array
             arraySections.append("Fatos Chuck Norris")
+            dictionaryArray.updateValue(arrayFactsCN as AnyObject, forKey: "Fatos Chuck Norris")
         }
         
         if let array = loadArrayFrases(entity: "CatFactsData"){
             arrayCatFacts = array
             arraySections.append("Fatos de Gatos")
+            dictionaryArray.updateValue(arrayCatFacts as AnyObject, forKey: "Fatos de Gatos")
         }
         
         self.collectionView.reloadData()
