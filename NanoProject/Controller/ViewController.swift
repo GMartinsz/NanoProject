@@ -28,6 +28,7 @@ class ViewController: UIViewController {
     @IBOutlet var popoverImagens: popoverImagem!
     @IBOutlet weak var buttonOutlet: UIButton!
     @IBOutlet var labelOutlet: popoverLabel!
+    @IBOutlet weak var titleOutlet: UILabel!
     
     var canButton = false
     let functions = Functions()
@@ -48,6 +49,10 @@ class ViewController: UIViewController {
         buttonOutlet.backgroundColor = .init(red: 0.9, green: 0.40, blue: 0.20, alpha: 1)
         loadingOutlet.stopAnimating()
     }
+    
+    override var prefersHomeIndicatorAutoHidden: Bool {
+        return true
+    }
 
     @IBAction func generateButton(_ sender: UIButton) {
 
@@ -58,46 +63,51 @@ class ViewController: UIViewController {
             popoverNoticias.removeFromSuperview()
             popoverImagens.removeFromSuperview()
             labelOutlet.removeFromSuperview()
-            let index = Int.random(in: 0...8)
+            let index = Int.random(in: 0...11)
             switch index {
             case 0:
                 getJokes()
                 self.view.backgroundColor = .init(red: 1, green: 0.8, blue: 0.05, alpha: 1)
-                self.popoverImagens.backgroundColor = self.view.backgroundColor
+                self.titleOutlet.text = "Jokes"
             case 1:
                 getCNFacts()
                 self.view.backgroundColor = .init(red: 0.8, green: 0.2, blue: 0.2, alpha: 1)
-                self.labelOutlet.backgroundColor = self.view.backgroundColor
+                self.titleOutlet.text = "Chuck Norris Facts"
             case 2:
                 getQuotes()
                 self.view.backgroundColor = .init(red: 0.5, green: 0.52, blue: 0.6, alpha: 1)
-                self.labelOutlet.backgroundColor = self.view.backgroundColor
+                self.titleOutlet.text = "Quotes"
             case 3:
                 newsPorPais()
                 self.view.backgroundColor = .gray
+                self.titleOutlet.text = "News"
             case 4:
                 getInsults()
                 self.view.backgroundColor = .init(red: 1, green: 0.2, blue: 0.2, alpha: 1)
-                self.labelOutlet.backgroundColor = self.view.backgroundColor
+                self.titleOutlet.text = "Insults"
             case 5:
                 getCatFacts()
                 self.view.backgroundColor = .init(red: 1, green: 0.8, blue: 0.05, alpha: 1)
-                self.labelOutlet.backgroundColor = self.view.backgroundColor
+                self.titleOutlet.text = "Cat Facts"
             case 6:
                 getMemes()
                 self.view.backgroundColor = .init(red: 0, green: 0.8, blue: 0.2, alpha: 1)
-                self.popoverImagens.backgroundColor = self.view.backgroundColor
+                self.titleOutlet.text = "Memes"
             case 7:
                 getRandomImages()
-                //Mudar background
+                self.titleOutlet.text = "Images"
             case 8:
                 newsSports()
+                self.titleOutlet.text = "Sport News"
             case 9:
                 getGifs()
+                self.titleOutlet.text = "Gifs"
             case 10:
                 getMovie()
+                self.titleOutlet.text = "Movie Recommendation"
             case 11:
                 getTVShow()
+                self.titleOutlet.text = "TV Show Recommendation"
           default:
                 print("teste")
             }
