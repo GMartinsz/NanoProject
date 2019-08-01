@@ -125,6 +125,7 @@
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="ogl-4Z-QnH"/>
                     <connections>
+                        <outlet property="curtirOutlet" destination="kcS-V7-5gt" id="2Ez-tY-KFW"/>
                         <outlet property="imagem" destination="QSp-11-tHE" id="KgT-vq-RjZ"/>
                     </connections>
                 </view>
@@ -183,6 +184,7 @@
                     <viewLayoutGuide key="safeArea" id="he0-CF-XeB"/>
                     <connections>
                         <outlet property="autor" destination="jJ2-Uo-XVK" id="vIK-33-zqf"/>
+                        <outlet property="curtirOutlet" destination="IzX-qY-7SK" id="Gg8-HM-odg"/>
                         <outlet property="imagem" destination="oLg-Gb-4ct" id="vLR-Hp-d3S"/>
                     </connections>
                 </view>
@@ -219,6 +221,7 @@
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="gNP-4u-q4i"/>
                     <connections>
+                        <outlet property="curtirOutlet" destination="LPG-Tl-Kz4" id="80A-0R-kCv"/>
                         <outlet property="textLabel" destination="dZt-NC-Irc" id="6r3-Z7-P8h"/>
                     </connections>
                 </view>
@@ -286,6 +289,7 @@
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="Pjg-OK-bNB"/>
                     <connections>
+                        <outlet property="curtirOutlet" destination="dMB-HD-Oqj" id="jeM-AV-kDn"/>
                         <outlet property="imagem" destination="Z7g-Ej-7ct" id="9WH-3y-laW"/>
                         <outlet property="noticia" destination="VXk-Nn-ZhB" id="6gF-uK-tcl"/>
                         <outlet property="tituloNoticia" destination="YGM-I8-eIH" id="Fgs-Y9-Ek5"/>
@@ -371,7 +375,7 @@
                             <outlet property="delegate" destination="bsv-if-q7D" id="fLz-ug-Aax"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="Favoritos" id="hej-1Q-7QG"/>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="hej-1Q-7QG"/>
                     <navigationItem key="navigationItem" title="Favoritos" id="Tjg-mh-8vh"/>
                     <connections>
                         <outlet property="imagemPopover" destination="Vds-js-9Qc" id="mkx-Lj-RsV"/>

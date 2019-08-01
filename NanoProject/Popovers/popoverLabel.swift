@@ -10,6 +10,7 @@ import UIKit
 
 class popoverLabel : UIView {
     
+    @IBOutlet weak var curtirOutlet: UIButton!
     @IBOutlet weak var textLabel: UILabel!
     var entidade = String()
     weak var delegate: Like?
@@ -17,7 +18,7 @@ class popoverLabel : UIView {
     
 
     @IBAction func curtir(_ sender: Any) {
-        
+        curtirOutlet.isEnabled = false
         var ultimoId = functions.buscarUltimoIdCoreData(entidade: entidade)
         ultimoId += 1
         functions.saveTextCoreData(texto: textLabel.text!, id: ultimoId, entidade: entidade)

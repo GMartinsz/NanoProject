@@ -15,6 +15,7 @@ class popoverPlexels: UIView {
     var urlOriginal: URL?
     var idImage = Int64()
     let function = Functions()
+    @IBOutlet weak var curtirOutlet: UIButton!
     
     @IBOutlet weak var imagem: UIImageView!
     @IBOutlet weak var autor: UILabel!
@@ -26,6 +27,7 @@ class popoverPlexels: UIView {
     }
     
     @IBAction func baixarImagem(_ sender: Any) {
+        curtirOutlet.isEnabled = false
         self.delegate?.liked()
         function.saveImageCoreData(imagem: imagem.image!, idImage: idImage, entidade: "FavoriteImage", autor: autor.text!)
     }

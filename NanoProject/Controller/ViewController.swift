@@ -63,6 +63,10 @@ class ViewController: UIViewController {
             popoverNoticias.removeFromSuperview()
             popoverImagens.removeFromSuperview()
             labelOutlet.removeFromSuperview()
+            popoverPlexels.curtirOutlet.isEnabled = true
+            popoverNoticias.curtirOutlet.isEnabled = true
+            popoverImagens.curtirOutlet.isEnabled = true
+            labelOutlet.curtirOutlet.isEnabled = true
             let index = Int.random(in: 0...11)
             switch index {
             case 0:
