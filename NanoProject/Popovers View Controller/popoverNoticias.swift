@@ -15,6 +15,7 @@ class popoverNoticias : UIView {
     var url: URL?
     let functions = Functions()
     
+    @IBOutlet weak var curtirOutlet: UIButton!
     @IBOutlet weak var imagem: UIImageView!
     @IBOutlet weak var noticia: UITextView!
     var autorNoticia = String()
@@ -32,6 +33,7 @@ class popoverNoticias : UIView {
     
     @IBAction func curtir(_ sender: Any) {
         var id = functions.buscarUltimoIdCoreData(entidade: entidade)
+        curtirOutlet.isEnabled = false
         id += 1
         var autor = String()
         if autorNoticia == ""{

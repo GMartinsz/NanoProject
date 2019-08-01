@@ -12,6 +12,7 @@ import UIKit
 class popoverImagem: UIView {
     
     let functions = Functions()
+    @IBOutlet weak var curtirOutlet: UIButton!
     
     var urlImagem: URL?
     weak var delegate: Like?
@@ -22,6 +23,7 @@ class popoverImagem: UIView {
     @IBAction func curtir(_ sender: Any) {
         
         var ultimoId = functions.buscarUltimoIdCoreData(entidade: entidade)
+        curtirOutlet.isEnabled = false
         ultimoId += 1
         functions.saveImageCoreData(imagem: imagem.image!, idImage: ultimoId, entidade: entidade, autor: "")
         self.delegate?.liked()
