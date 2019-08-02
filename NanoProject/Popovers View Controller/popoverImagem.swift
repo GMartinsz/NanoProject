@@ -27,7 +27,8 @@ class popoverImagem: UIView {
         var ultimoId = functions.buscarUltimoIdCoreData(entidade: entidade)
         curtirOutlet.isEnabled = false
         ultimoId += 1
-        functions.saveImageCoreData(imagem: imagem.image!, idImage: ultimoId, entidade: entidade, autor: "", gifData: imagemData!)
+        guard let imagem = imagem.image else {return}
+        functions.saveImageCoreData(imagem: imagem, idImage: ultimoId, entidade: entidade, autor: "", gifData: imagemData)
         self.delegate?.liked()
         
     }

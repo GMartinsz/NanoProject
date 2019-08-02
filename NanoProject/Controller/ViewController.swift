@@ -197,6 +197,7 @@ class ViewController: UIViewController {
             self.newsOutletAutoLayout()
             self.popoverNoticias.tituloNoticia.text = (title as! String)
             self.popoverNoticias.url = URL(string: urlDestino as! String)
+            self.popoverNoticias.verMais.isHidden = false
             self.canButton = !self.canButton
             self.loadingOutlet.stopAnimating()
         })
@@ -236,6 +237,7 @@ class ViewController: UIViewController {
             self.newsOutletAutoLayout()
             self.popoverNoticias.tituloNoticia.text = (title as! String)
             self.popoverNoticias.url = URL(string: urlDestino as! String)
+            self.popoverNoticias.verMais.isHidden = false
             self.canButton = !self.canButton
             self.loadingOutlet.stopAnimating()
         })
@@ -393,6 +395,7 @@ class ViewController: UIViewController {
                 self.popoverNoticias.entidade = "FilmesData"
                 self.newsOutletAutoLayout()
                 self.popoverNoticias.tituloNoticia.text = chosenMovie["title"]
+                self.popoverNoticias.verMais.isHidden = true
                 self.canButton = !self.canButton
                 self.loadingOutlet.stopAnimating()
             })

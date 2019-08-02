@@ -15,6 +15,7 @@ class popoverNoticias : UIView {
     var url: URL?
     let functions = Functions()
     
+    @IBOutlet weak var verMais: UIButton!
     @IBOutlet weak var curtirOutlet: UIButton!
     @IBOutlet weak var imagem: UIImageView!
     @IBOutlet weak var noticia: UITextView!

@@ -275,6 +275,7 @@
                         <outlet property="imagem" destination="Z7g-Ej-7ct" id="9WH-3y-laW"/>
                         <outlet property="noticia" destination="VXk-Nn-ZhB" id="6gF-uK-tcl"/>
                         <outlet property="tituloNoticia" destination="YGM-I8-eIH" id="Fgs-Y9-Ek5"/>
+                        <outlet property="verMais" destination="GHz-aw-Gnh" id="8VF-Zn-I1a"/>
                     </connections>
                 </view>
             </objects>
@@ -689,6 +690,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="PIq-J4-OLa" customClass="TabBarController" customModule="NanoProject" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="igy-vh-1X4">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>

@@ -157,7 +157,7 @@ class Functions {
     
     
     //Core Data
-    func saveImageCoreData(imagem: UIImage, idImage: Int64, entidade: String, autor: String, gifData: Data){
+    func saveImageCoreData(imagem: UIImage, idImage: Int64, entidade: String, autor: String, gifData: Data?){
         
         guard let imageData = imagem.jpegData(compressionQuality: 0.2) else {return}
         guard let appDelegate =
