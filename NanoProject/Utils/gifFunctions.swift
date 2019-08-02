@@ -34,7 +34,7 @@ extension UIImage {
         return UIImage.animatedImageWithSource(source)
     }
     
-    public class func gifImageWithURL(_ gifUrl:String) -> UIImage? {
+    public class func gifImageWithURL(_ gifUrl:String) -> Data?{
         guard let bundleURL:URL = URL(string: gifUrl)
             else {
                 print("image named \"\(gifUrl)\" doesn't exist")
@@ -45,7 +45,7 @@ extension UIImage {
             return nil
         }
         
-        return gifImageWithData(imageData)
+        return imageData
     }
     
     public class func gifImageWithName(_ name: String) -> UIImage? {

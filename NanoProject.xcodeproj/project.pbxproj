@@ -25,9 +25,11 @@
 		E62CA25A22F37D5100EDC37D /* PopoverImagemCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62CA25922F37D5100EDC37D /* PopoverImagemCollection.swift */; };
 		E62CA25C22F37D6100EDC37D /* PopoverLabelCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62CA25B22F37D6100EDC37D /* PopoverLabelCollection.swift */; };
 		E62CA25E22F37D7200EDC37D /* PopoverNoticiasCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62CA25D22F37D7200EDC37D /* PopoverNoticiasCollection.swift */; };
+		E62CA26022F3892E00EDC37D /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62CA25F22F3892E00EDC37D /* ConfigViewController.swift */; };
 		E64514FB22F1548F00596326 /* ViewControllerFavs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64514FA22F1548F00596326 /* ViewControllerFavs.swift */; };
 		E64514FD22F1572A00596326 /* CustomCellCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64514FC22F1572A00596326 /* CustomCellCollection.swift */; };
 		E64514FF22F16EB200596326 /* popoverImagem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64514FE22F16EB200596326 /* popoverImagem.swift */; };
+		E6614BF822F3E8D80000648B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6614BF722F3E8D80000648B /* TabBarController.swift */; };
 		E6D295CD22F2291900EA7375 /* CustomSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D295CC22F2291900EA7375 /* CustomSection.swift */; };
 		E6D295CF22F239DB00EA7375 /* gifFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D295CE22F239DB00EA7375 /* gifFunctions.swift */; };
 		E6E2FF3A22EB8E2200DD9D7B /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E2FF3922EB8E2200DD9D7B /* News.swift */; };
@@ -59,9 +61,11 @@
 		E62CA25922F37D5100EDC37D /* PopoverImagemCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverImagemCollection.swift; sourceTree = "<group>"; };
 		E62CA25B22F37D6100EDC37D /* PopoverLabelCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverLabelCollection.swift; sourceTree = "<group>"; };
 		E62CA25D22F37D7200EDC37D /* PopoverNoticiasCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverNoticiasCollection.swift; sourceTree = "<group>"; };
+		E62CA25F22F3892E00EDC37D /* ConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
 		E64514FA22F1548F00596326 /* ViewControllerFavs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFavs.swift; sourceTree = "<group>"; };
 		E64514FC22F1572A00596326 /* CustomCellCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellCollection.swift; sourceTree = "<group>"; };
 		E64514FE22F16EB200596326 /* popoverImagem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popoverImagem.swift; sourceTree = "<group>"; };
+		E6614BF722F3E8D80000648B /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E6D295CC22F2291900EA7375 /* CustomSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSection.swift; sourceTree = "<group>"; };
 		E6D295CE22F239DB00EA7375 /* gifFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gifFunctions.swift; sourceTree = "<group>"; };
 		E6E2FF3922EB8E2200DD9D7B /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
@@ -166,8 +170,10 @@
 		ACE2F0A122EF646200C5A002 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E62CA25F22F3892E00EDC37D /* ConfigViewController.swift */,
 				E64514FA22F1548F00596326 /* ViewControllerFavs.swift */,
 				E64514FC22F1572A00596326 /* CustomCellCollection.swift */,
+				E6614BF722F3E8D80000648B /* TabBarController.swift */,
 				E6D295CC22F2291900EA7375 /* CustomSection.swift */,
 				ACE2F08422EA3C0300C5A002 /* ViewController.swift */,
 			);
@@ -324,6 +330,7 @@
 			files = (
 				E62CA25A22F37D5100EDC37D /* PopoverImagemCollection.swift in Sources */,
 				E6D295CD22F2291900EA7375 /* CustomSection.swift in Sources */,
+				E62CA26022F3892E00EDC37D /* ConfigViewController.swift in Sources */,
 				E62CA25822F37D4100EDC37D /* PopoverPlexelCollection.swift in Sources */,
 				ACE2F08522EA3C0300C5A002 /* ViewController.swift in Sources */,
 				AC5239C822EF664B00E5F312 /* FactsCN.swift in Sources */,
@@ -339,6 +346,7 @@
 				ACE2F09C22EB932F00C5A002 /* Quote.swift in Sources */,
 				E6F9DFFF22F0C55C007F1539 /* popoverPlexels.swift in Sources */,
 				E62CA25C22F37D6100EDC37D /* PopoverLabelCollection.swift in Sources */,
+				E6614BF822F3E8D80000648B /* TabBarController.swift in Sources */,
 				E62CA25E22F37D7200EDC37D /* PopoverNoticiasCollection.swift in Sources */,
 				AC5239D022EF763000E5F312 /* popoverLabel.swift in Sources */,
 				E64514FD22F1572A00596326 /* CustomCellCollection.swift in Sources */,

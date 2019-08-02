@@ -54,7 +54,7 @@ class ViewController: UIViewController {
         return true
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    func setarCollection(){
         collection = []
         if UserDefaults.standard.bool(forKey: "cat") {
             collection.append("cat")
@@ -96,9 +96,13 @@ class ViewController: UIViewController {
             collection.append("tvshow")
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setarCollection()
+    }
 
     @IBAction func generateButton(_ sender: UIButton) {
-
+        
         canButton = !canButton
         if canButton{
             popoverPlexels.removeFromSuperview()
@@ -353,7 +357,9 @@ class ViewController: UIViewController {
             let value = JSON(responseData.result.value!).dictionaryObject
             let array = value!["data"] as! [String: AnyObject]
             let url = array["image_url"] as! String
-            let image = UIImage.gifImageWithURL(url)
+            guard let imageData = UIImage.gifImageWithURL(url) else {return}
+            self.popoverImagens.imagemData = imageData
+            guard let image = UIImage.gifImageWithData(imageData) else {return}
             self.popoverImagens.imagem.image = image
             self.popoverImagens.entidade = "GifData"
             self.view.addSubview(self.popoverImagens)

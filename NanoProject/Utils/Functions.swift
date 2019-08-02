@@ -157,9 +157,9 @@ class Functions {
     
     
     //Core Data
-    func saveImageCoreData(imagem: UIImage, idImage: Int64, entidade: String, autor: String){
+    func saveImageCoreData(imagem: UIImage, idImage: Int64, entidade: String, autor: String, gifData: Data){
         
-        guard let imageData = imagem.pngData() else {return}
+        guard let imageData = imagem.jpegData(compressionQuality: 0.2) else {return}
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
                 return
@@ -168,10 +168,15 @@ class Functions {
         let manageContext = appDelegate.persistentContainer.viewContext
         guard let entity = NSEntityDescription.entity(forEntityName: entidade, in: manageContext) else {return}
         let image = NSManagedObject(entity: entity, insertInto: manageContext)
-        image.setValue(imageData, forKeyPath: "imageData")
+        
         image.setValue(idImage, forKey: "id")
         if (autor != ""){
             image.setValue(autor, forKey: "autor")
+        }
+        if entidade == "GifData"{
+            image.setValue(gifData, forKey: "imageData")
+        }else {
+            image.setValue(imageData, forKeyPath: "imageData")
         }
         
         do {

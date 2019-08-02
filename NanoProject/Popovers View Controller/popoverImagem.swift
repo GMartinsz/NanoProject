@@ -17,6 +17,8 @@ class popoverImagem: UIView {
     var urlImagem: URL?
     weak var delegate: Like?
     var entidade = String()
+    var urlGif = String()
+    var imagemData: Data?
     
     @IBOutlet weak var imagem: UIImageView!
     
@@ -25,7 +27,7 @@ class popoverImagem: UIView {
         var ultimoId = functions.buscarUltimoIdCoreData(entidade: entidade)
         curtirOutlet.isEnabled = false
         ultimoId += 1
-        functions.saveImageCoreData(imagem: imagem.image!, idImage: ultimoId, entidade: entidade, autor: "")
+        functions.saveImageCoreData(imagem: imagem.image!, idImage: ultimoId, entidade: entidade, autor: "", gifData: imagemData!)
         self.delegate?.liked()
         
     }

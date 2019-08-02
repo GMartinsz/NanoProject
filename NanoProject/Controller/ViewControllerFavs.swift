@@ -30,11 +30,7 @@ struct Frases {
 }
 
 class ViewControllerFavs: UICollectionViewController {
-    
-    //Collections
 
-    
-    
     //Popovers
     @IBOutlet var popoverLabel: PopoverLabelCollection!
     @IBOutlet var popoverPlexels: PopoverPlexelCollection!
@@ -73,9 +69,12 @@ class ViewControllerFavs: UICollectionViewController {
     deinit {
         print("saiu favoritos")
     }
-    
-    @IBAction func voltarButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+
+    override func viewWillDisappear(_ animated: Bool) {
+        for view in self.view.subviews{
+            view.removeFromSuperview()
+        }
+        self.collectionView.removeFromSuperview()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -339,18 +338,22 @@ extension ViewControllerFavs {
     func parsingImages(arrayObjects: [NSManagedObject], entidade: String) -> [Imagens]?{
 
         var array = [Imagens]()
-        
         for images in arrayObjects {
             var obj = Imagens()
-            guard let uiImage = images.value(forKey: "imageData") as? Data else {return nil}
-            if (entidade == "GifData"){
-                guard let imagem = UIImage.gifImageWithData(uiImage) else {return nil}
+            
+            if entidade == "GifData"{
+                guard let imageData = images.value(forKey: "imageData") as? Data else {return nil}
+                guard let imagem = UIImage.gifImageWithData(imageData) else {return nil}
                 obj.imagem = imagem
             }else {
-                guard let imagem = UIImage(data: uiImage) else {return nil}
+                guard let imageData = images.value(forKey: "imageData") as? Data else {return nil}
+                guard let imagem = UIImage(data: imageData) else {return nil}
                 obj.imagem = imagem
             }
+            
             guard let id = images.value(forKey: "id") as? Int64 else {return nil}
+            obj.id = id
+            
             if (entidade == "FavoriteImage"){
                 guard let autor = images.value(forKey: "autor") as? String else {return nil}
                 obj.autor = autor
@@ -358,7 +361,6 @@ extension ViewControllerFavs {
                 obj.autor = "Desconhecido"
             }
             
-            obj.id = id
             array.append(obj)
         }
         

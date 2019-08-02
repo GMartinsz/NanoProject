@@ -20,7 +20,7 @@ class popoverPlexels: UIView {
     @IBOutlet weak var imagem: UIImageView!
     @IBOutlet weak var autor: UILabel!
     weak var delegate: Like?
-  
+    var aux: Data?
     
     @IBAction func visitarAutor(_ sender: Any) {
         UIApplication.shared.open(urlAutor!)
@@ -29,7 +29,7 @@ class popoverPlexels: UIView {
     @IBAction func baixarImagem(_ sender: Any) {
         curtirOutlet.isEnabled = false
         self.delegate?.liked()
-        function.saveImageCoreData(imagem: imagem.image!, idImage: idImage, entidade: "FavoriteImage", autor: autor.text!)
+        function.saveImageCoreData(imagem: imagem.image!, idImage: idImage, entidade: "FavoriteImage", autor: autor.text!, gifData: aux!)
     }
     
 }

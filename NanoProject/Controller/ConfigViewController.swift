@@ -60,6 +60,9 @@ class ConfigViewController: UIViewController {
 
     }
     
+    deinit {
+        print("saiu config")
+    }
     
     
     

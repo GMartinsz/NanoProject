@@ -19,6 +19,7 @@ class CustomCellCollection: UICollectionViewCell {
     var text = String()
     var autor = String()
     var titulo = String()
+    var url = String()
     
     
 }
