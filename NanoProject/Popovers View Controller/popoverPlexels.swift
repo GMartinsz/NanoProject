@@ -29,7 +29,7 @@ class popoverPlexels: UIView {
     @IBAction func baixarImagem(_ sender: Any) {
         curtirOutlet.isEnabled = false
         self.delegate?.liked()
-        function.saveImageCoreData(imagem: imagem.image!, idImage: idImage, entidade: "FavoriteImage", autor: autor.text!, gifData: aux!)
+        function.saveImageCoreData(imagem: imagem.image!, idImage: idImage, entidade: "FavoriteImage", autor: autor.text!, gifData: aux)
     }
     
 }

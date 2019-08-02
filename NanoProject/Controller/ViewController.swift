@@ -189,11 +189,11 @@ class ViewController: UIViewController {
             self.popoverNoticias.entidade = "NewsData"
             self.popoverNoticias.autorNoticia = fontName
             self.popoverNoticias.imagem.image = imagem
-            self.popoverNoticias.noticia.text =  (content as! String)
+            self.popoverNoticias.noticia.text =  content
             self.view.addSubview(self.popoverNoticias)
             self.popoverNoticias.center = self.view.center
             self.newsOutletAutoLayout()
-            self.popoverNoticias.tituloNoticia.text = (title as! String)
+            self.popoverNoticias.tituloNoticia.text = title
             self.popoverNoticias.url = URL(string: urlDestino as! String)
             self.popoverNoticias.verMais.isHidden = false
             self.canButton = !self.canButton

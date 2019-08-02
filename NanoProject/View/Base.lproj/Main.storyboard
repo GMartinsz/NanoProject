@@ -314,7 +314,7 @@
                                         </label>
                                     </subviews>
                                 </view>
-                                <color key="backgroundColor" red="0.59595098349999998" green="0.59595098349999998" blue="0.59595098349999998" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="eHe-aN-Iza" firstAttribute="leading" secondItem="Zo5-3E-QJz" secondAttribute="leadingMargin" constant="12" id="9Sp-uW-JbX"/>
                                     <constraint firstItem="cvu-JE-CZC" firstAttribute="height" secondItem="Zo5-3E-QJz" secondAttribute="height" multiplier="0.95" id="9iS-nr-3Q4"/>
